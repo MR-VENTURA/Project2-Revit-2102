@@ -21,7 +21,7 @@ import com.revature.app.exceptions.PostNotFoundException;
 import com.revature.app.services.PostsService;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
+@CrossOrigin(origins="jdbc:postgresql://project-2.cncizezosbtp.us-east-2.rds.amazonaws.com:5432/Project2-Revit-2102/Revit", allowCredentials="true")
 @RequestMapping(path="/posts")
 public class PostsController {
 	private final PostsService postServ;
