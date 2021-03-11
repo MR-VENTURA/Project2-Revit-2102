@@ -1,9 +1,21 @@
 package com.revature.app.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Content {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer contentId;
+	@Column(name = "post_id")
 	private Integer postId;
-	private String postDate;
+	@Column(name = "post_date")
+	private Long postDate;
 	private Boolean enabled;
 	private String message;
 	private String image;
@@ -19,10 +31,10 @@ public class Content {
 	public void setPostId(Integer postId) {
 		this.postId = postId;
 	}
-	public String getPostDate() {
+	public Long getPostDate() {
 		return postDate;
 	}
-	public void setPostDate(String postDate) {
+	public void setPostDate(Long postDate) {
 		this.postDate = postDate;
 	}
 	public Boolean getEnabled() {
@@ -101,5 +113,6 @@ public class Content {
 		return "Content [contentId=" + contentId + ", postId=" + postId + ", postDate=" + postDate + ", enabled="
 				+ enabled + ", message=" + message + ", image=" + image + "]";
 	}
+	
 	
 }

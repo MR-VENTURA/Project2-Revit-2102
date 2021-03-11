@@ -1,10 +1,23 @@
 package com.revature.app.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class People {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private Integer peopleId;
 	private String username;
+	@Column(name="userpass")
 	private String userPass;
+	@Column(name="account_statuses")
 	private Integer accountStatuses;
+	@Column(name="account_roles")
 	private Integer accountRoles;
 	public Integer getPeopleId() {
 		return peopleId;

@@ -1,13 +1,27 @@
 package com.revature.app.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Posts {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private Integer postId;
+	@Column(name="author_id")
 	private Integer authorId;
+	@Column(name="parent_post_id")
 	private Integer parentPostId;
+	@Column(name="flagged_for_review")
 	private Boolean flaggedForReview;
 	private Integer likes;
 	private Integer dislikes;
-	private String lastActivityDate;
+	@Column(name="last_activity_date")
+	private Long lastActivityDate;
 	public Integer getPostId() {
 		return postId;
 	}
@@ -44,10 +58,10 @@ public class Posts {
 	public void setDislikes(Integer dislikes) {
 		this.dislikes = dislikes;
 	}
-	public String getLastActivityDate() {
+	public Long getLastActivityDate() {
 		return lastActivityDate;
 	}
-	public void setLastActivityDate(String lastActivityDate) {
+	public void setLastActivityDate(Long lastActivityDate) {
 		this.lastActivityDate = lastActivityDate;
 	}
 	@Override
