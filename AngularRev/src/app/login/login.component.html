@@ -1,0 +1,8 @@
+<p>Login works!</p>
+<form>
+    <input id="usernameInput" type="text" [(ngModel)]="username" name="username"> <!-- two-way binding -->
+    <input id="passwordInput" type="text" [(ngModel)]="password" name="username">
+    <button id="getBtn" class="pkmn" type="button" (click)="handleLogin()">Login</button>
+</form>
+<p *ngIf="userAccount.id != null"> Account is not null</p>
+<app-dashboard *ngIf="userAccount.id != null" [account]="userAccount"></app-dashboard>
