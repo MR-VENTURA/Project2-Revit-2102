@@ -16,6 +16,6 @@ public interface PeopleService {
 		public void updatePeople(People p) throws PersonNotFoundException;
 		// delete
 		//public void deleteUser(People p);
-
+		public List<People> getAllPeople();
 	}
 

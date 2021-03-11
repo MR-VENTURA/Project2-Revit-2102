@@ -1,5 +1,7 @@
 package com.revature.app.services;
 
+import java.util.Set;
+
 import com.revature.app.beans.People;
 import com.revature.app.beans.Posts;
 import com.revature.app.exceptions.PersonNotFoundException;
@@ -14,4 +16,5 @@ public interface PostsService {
 	public People getPeopleByPostId(Integer id) throws PersonNotFoundException, PostNotFoundException;
 	//update
 	public void updatePosts(Posts ps)throws PostNotFoundException;
+	public Set<Posts> getAllPosts();
 }

@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.revature.app.beans.People;
 import com.revature.app.beans.Posts;
 import com.revature.app.data.ContentDAO;
@@ -52,6 +49,16 @@ public class PostsServiceImpl implements PostsService {
 	public void updatePosts(Posts ps) throws PostNotFoundException {
 		if (findByPostId(ps.getPostId()) != null)
 			postsDao.save(ps);
+	}
+
+
+	@Override
+	public Set<Posts> getAllPosts() {
+		// TODO Auto-generated method stub
+		List<Posts> postList = postsDao.findAll();
+		Set<Posts> postSet = new HashSet<>();
+		postSet.addAll(postList);
+		return postSet;
 	}
 	
 }

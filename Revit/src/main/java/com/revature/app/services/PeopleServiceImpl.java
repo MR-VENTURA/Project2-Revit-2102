@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.revature.app.beans.People;
 import com.revature.app.data.PeopleDAO;
 import com.revature.app.exceptions.NonUniqueUsernameException;
@@ -41,5 +39,15 @@ public class PeopleServiceImpl implements PeopleService{
 		if (findPeopleById(p.getPeopleId()) != null)
 			peopleDao.save(p);
 		
+	}
+
+
+	@Override
+	public Set<People> getAllPeople() {
+		// TODO Auto-generated method stub
+		List<People> peopleList = peopleDao.findAll();
+		Set<People> peopleSet = new HashSet<>();
+		peopleSet.addAll(peopleList);
+		return peopleSet;
 	}
 }
