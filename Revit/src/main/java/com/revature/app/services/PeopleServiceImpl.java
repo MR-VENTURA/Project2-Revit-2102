@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.revature.app.beans.People;
 import com.revature.app.data.PeopleDAO;
 import com.revature.app.exceptions.NonUniqueUsernameException;
 import com.revature.app.exceptions.PersonNotFoundException;
 
+@Service
 public class PeopleServiceImpl implements PeopleService{
 	private PeopleDAO peopleDao;
 	
