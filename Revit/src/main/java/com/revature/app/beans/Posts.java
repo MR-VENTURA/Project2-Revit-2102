@@ -22,6 +22,17 @@ public class Posts {
 	private Integer dislikes;
 	@Column(name="last_activity_date")
 	private Long lastActivityDate;
+	
+	public Posts() {
+		this.authorId = 0;
+		this.dislikes = 0;
+		this.likes = 0;
+		this.flaggedForReview = false;
+		this.lastActivityDate = null;
+		this.parentPostId = 0;
+		this.postId = 0;
+
+	}
 	public Integer getPostId() {
 		return postId;
 	}

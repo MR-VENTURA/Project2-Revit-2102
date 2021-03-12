@@ -19,6 +19,15 @@ public class People {
 	private Integer accountStatuses;
 	@Column(name="account_roles")
 	private Integer accountRoles;
+	
+	public People() {
+		this.peopleId =0;
+		this.accountRoles = 0;
+		this.accountStatuses = 0;
+		this.username = "";
+		this.userPass = "";
+		
+	}
 	public Integer getPeopleId() {
 		return peopleId;
 	}

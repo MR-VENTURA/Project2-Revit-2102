@@ -13,6 +13,11 @@ public class Status {
 	@Column(name="id")
 	private Integer statusId;
 	private String status;
+	
+	public Status() {
+		this.status = "";
+		this.statusId = 0;
+	}
 	public Integer getStatusId() {
 		return statusId;
 	}

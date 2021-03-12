@@ -13,6 +13,11 @@ public class Roles {
 	@Column(name="id")
 	private Integer roleId;
 	private String role;
+	
+	public Roles() {
+		this.roleId = 0;
+		this.role = "";
+	}
 	public Integer getRoleId() {
 		return roleId;
 	}

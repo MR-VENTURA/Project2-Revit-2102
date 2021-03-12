@@ -19,6 +19,16 @@ public class Content {
 	private Boolean enabled;
 	private String message;
 	private String image;
+	
+	public Content() {
+		this.contentId = 0;
+		this.postId = 0;
+		this.postDate = null;
+		this.enabled = false;
+		this.image = "";
+		this.message="";
+	
+	}
 	public Integer getContentId() {
 		return contentId;
 	}
