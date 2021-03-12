@@ -21,11 +21,11 @@ public class People {
 	private Integer accountRoles;
 	
 	public People() {
-		this.peopleId =0;
-		this.accountRoles = 0;
-		this.accountStatuses = 0;
-		this.username = "";
-		this.userPass = "";
+		peopleId =0;
+		accountRoles = 0;
+		accountStatuses = 0;
+		username = "";
+		userPass = "";
 		
 	}
 	public Integer getPeopleId() {

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.revature.app.beans.People;
 import com.revature.app.beans.Posts;
 import com.revature.app.data.ContentDAO;
@@ -14,6 +16,7 @@ import com.revature.app.data.StatusDAO;
 import com.revature.app.exceptions.PersonNotFoundException;
 import com.revature.app.exceptions.PostNotFoundException;
 
+@Service
 public class PostsServiceImpl implements PostsService {
 	
 	private PostsDAO postsDao;

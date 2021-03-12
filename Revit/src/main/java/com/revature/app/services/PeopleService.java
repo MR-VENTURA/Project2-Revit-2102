@@ -7,7 +7,7 @@ import com.revature.app.exceptions.NonUniqueUsernameException;
 import com.revature.app.exceptions.PersonNotFoundException;
 
 public interface PeopleService {
-	// create
+		// create
 		public Integer addPeople(People p) throws NonUniqueUsernameException;
 		// read
 		public People findPeopleById(Integer id) throws PersonNotFoundException;

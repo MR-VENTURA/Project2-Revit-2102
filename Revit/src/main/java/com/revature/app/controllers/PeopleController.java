@@ -3,6 +3,7 @@ package com.revature.app.controllers;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,11 +25,11 @@ import com.revature.app.services.PeopleService;
 @CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 @RequestMapping(path="/user")
 public class PeopleController {
-	private PeopleService peopleServ;
+	private final PeopleService peopleServ;
 	
 	@Autowired
 	public PeopleController(PeopleService p) {
-		peopleServ = p;
+		this.peopleServ = p;
 	}
 	
 	@GetMapping
@@ -39,7 +40,7 @@ public class PeopleController {
 		return ResponseEntity.ok(loggedPeople);
 	}
 	
-	@PutMapping
+	@PostMapping (path ="/login")
 	public ResponseEntity<People> logIn(HttpSession session, @RequestParam("username")
 			String username, @RequestParam("password") String password) throws PersonNotFoundException {
 		People people = peopleServ.findPeopleByUsername(username);
