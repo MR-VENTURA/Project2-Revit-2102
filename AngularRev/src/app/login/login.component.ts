@@ -34,10 +34,8 @@ export class LoginComponent implements OnInit {
   handleLogin() {
     this.account.username = this.username;
     this.account.userPass = this.password;
-    console.log('handle this login', this.username, this.password);
     this.accountServ.handleLogin(this.username, this.password).subscribe(
       res => {
-        console.log('received', res);
         this.account = res;
         this.router.navigate(['home']);
       }

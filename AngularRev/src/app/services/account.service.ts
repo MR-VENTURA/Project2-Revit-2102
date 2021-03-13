@@ -21,4 +21,10 @@ export class AccountService {
       map(res => res as Account)
     );
   }
+
+  getSession(): Observable<Account> {
+    return this.http.get('http://localhost:8081/revit/user').pipe(
+      map(res => res as Account)
+    );
+  }
 }

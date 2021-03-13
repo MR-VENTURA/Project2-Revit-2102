@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Account } from '../models/account';
 import { AccountService } from '../services/account.service';
 
@@ -12,10 +13,23 @@ export class DashboardComponent implements OnInit {
 
   postmsg: string;
   
-  constructor(private accountServ: AccountService) {
-    console.log("test");
+  constructor(private router: Router, private accountServ: AccountService) {
+    this.getSession();
   }
 
   ngOnInit(): void {
+  }
+
+  getSession() {
+    this.accountServ.getSession().subscribe(
+      res => {
+        if(res) {
+          this.account = res;
+          console.log(this.account, " dashboard");
+          if(this.account.peopleId != null)
+            this.router.navigate(['home']);
+        }
+      }
+    )
   }
 }
