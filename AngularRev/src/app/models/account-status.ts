@@ -1,4 +1,4 @@
 export class AccountStatus {
-    id: number;
-    name: string;
+    statusId: number;
+    status: string;
 }

@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Account } from '../models/account';
+import { AccountService } from '../services/account.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,10 +9,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   @Input() account: Account;
+
+  postmsg: string;
   
-  constructor() { }
+  constructor(private accountServ: AccountService) {
+    console.log("test");
+  }
 
   ngOnInit(): void {
   }
-
 }

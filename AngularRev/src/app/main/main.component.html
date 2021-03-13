@@ -1,0 +1,3 @@
+<app-navbar [account]="userAccount"></app-navbar>
+<app-login *ngIf="userAccount.peopleId == null" [account]="userAccount"></app-login>
+<app-dashboard *ngIf="userAccount.peopleId != null" [account]="userAccount"></app-dashboard>

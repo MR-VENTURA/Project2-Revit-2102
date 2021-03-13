@@ -11,9 +11,13 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  handleLogin(): Observable<Account> {
+  handleLogin(username: string, password: string): Observable<Account> {
     //TODO: change url.
-    return this.http.get('').pipe(
+    const data = {
+      username,
+      password
+    }
+    return this.http.post('http://localhost:8081/revit/user/login', data).pipe(
       map(res => res as Account)
     );
   }
