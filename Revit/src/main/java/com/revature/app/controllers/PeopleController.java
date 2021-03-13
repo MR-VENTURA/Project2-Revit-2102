@@ -1,9 +1,10 @@
 package com.revature.app.controllers;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,9 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.app.beans.People;
 import com.revature.app.exceptions.NonUniqueUsernameException;
 import com.revature.app.exceptions.PersonNotFoundException;
@@ -27,6 +29,8 @@ import com.revature.app.services.PeopleService;
 public class PeopleController {
 	private final PeopleService peopleServ;
 	
+	private ObjectMapper om = new ObjectMapper();
+	
 	@Autowired
 	public PeopleController(PeopleService p) {
 		this.peopleServ = p;
@@ -35,21 +39,27 @@ public class PeopleController {
 	@GetMapping
 	public ResponseEntity<People> checkLogin(HttpSession session) {
 		People loggedPeople = (People) session.getAttribute("username");
+		System.out.println(loggedPeople);
 		if (loggedPeople == null)
 			return ResponseEntity.badRequest().build();
 		return ResponseEntity.ok(loggedPeople);
 	}
 	
 	@PostMapping (path ="/login")
-	public ResponseEntity<People> logIn(HttpSession session, @RequestParam("username")
-			String username, @RequestParam("password") String password) throws PersonNotFoundException {
-		People people = peopleServ.findPeopleByUsername(username);
-		if (people != null) {
-			if (people.getUserPass().equals(password)) {
-				session.setAttribute("username", people);
-				return ResponseEntity.ok(people);
+	public ResponseEntity<People> logIn(HttpSession session, @RequestBody String jsonBody) throws PersonNotFoundException {
+		HashMap jb;
+		try {
+			jb = om.readValue(jsonBody, HashMap.class);
+			People people = peopleServ.findPeopleByUsername(jb.get("username").toString());
+			if (people != null) {
+				if (people.getUserPass().equals(jb.get("password").toString())) {
+					session.setAttribute("username", people);
+					return ResponseEntity.ok(people);
+				}
+				return ResponseEntity.badRequest().build();
 			}
-			return ResponseEntity.badRequest().build();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
 		}
 		return ResponseEntity.notFound().build();
 	}
