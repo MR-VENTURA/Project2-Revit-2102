@@ -10,9 +10,12 @@ import { AccountService } from '../services/account.service';
 })
 export class DashboardComponent implements OnInit {
   @Input() account: Account;
-
+  
   postmsg: string;
   
+  // posts: Array<Post> 
+
+
   constructor(private router: Router, private accountServ: AccountService) {
     this.getSession();
   }
