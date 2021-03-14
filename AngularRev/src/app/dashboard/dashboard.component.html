@@ -1,2 +1,9 @@
-<input id="post" type="text" [(ngModel)]="postmsg" name="post"/>
-<h1>I am here!</h1>
+<div class="container">
+    <div class="row">
+        <div class="post-submittion">
+            <textarea rows="5" id="post" name="post" class="post-big" [(ngModel)]="postmsg" placeholder="What would you like to share?"></textarea>
+            <button id="getBtn" type="button" class="btn-post">Post</button>
+        </div>
+    </div>
+    <app-post></app-post>
+</div>

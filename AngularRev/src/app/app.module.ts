@@ -10,6 +10,7 @@ import { AccountService } from './services/account.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MainComponent } from './main/main.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MainComponent } from './main/main.component';
     LoginComponent,
     DashboardComponent,
     NavbarComponent,
-    MainComponent
+    MainComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
