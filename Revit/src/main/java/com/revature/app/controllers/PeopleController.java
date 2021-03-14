@@ -28,7 +28,6 @@ import com.revature.app.services.PeopleService;
 @RequestMapping(path="/user")
 public class PeopleController {
 	private final PeopleService peopleServ;
-	
 	private ObjectMapper om = new ObjectMapper();
 	
 	@Autowired
