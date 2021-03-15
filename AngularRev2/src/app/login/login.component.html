@@ -1,0 +1,12 @@
+<div class="bg">
+    <div class="container login-contain">
+        <div class="login-p">
+            <h1>Login</h1>
+            <form>
+                <input id="usernameInput" type="text" [(ngModel)]="username" name="username" placeholder="Username"/> <!-- two-way binding -->
+                <input id="passwordInput" type="password" [(ngModel)]="password" name="password" placeholder="Password" />
+                <button id="getBtn" type="button" (click)="handleLogin()">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
