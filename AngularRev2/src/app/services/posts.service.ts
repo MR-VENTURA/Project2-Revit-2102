@@ -16,20 +16,23 @@ export class PostsService {
       map(res => res as Posts) );
   };
 
-  public viewPosts(postId: number, authorId: number, likes: number, dislikes: number):  Observable<Posts> {
-    const data = {
-      postId,
-      authorId,
-      likes,
-      dislikes
-//      lastActivityDate
-    }
-    return this.http.get('http://localhost:8081/revit/posts').pipe(
-      map(res => res as Posts) );
-  };
+//   public viewPosts(postId: number, authorId: number, likes: number, dislikes: number):  Observable<Posts> {
+//     const data = {
+//       postId,
+//       authorId,
+//       likes,
+//       dislikes
+// //      lastActivityDate
+//     }
+//     return this.http.get('http://localhost:8081/revit/posts').pipe(
+//       map(res => res as Posts) );
+//   };
+      public viewPosts() : Observable<Posts[]> {
+        return this.http.get<Posts[]>('http://localhost:8081/revit/posts');
+      }
 
-  public updatePosts(posts : Posts, value: any): Observable<Posts> {
-    return this.http.put('http://localhost:8081/revit/posts/${postsId}', value).pipe(
+  public updatePost(postId : any, value: any): Observable<Posts> {
+    return this.http.put('http://localhost:8081/revit/posts/'+ postId, value).pipe(
       map(res => res as Posts) );
   };
 

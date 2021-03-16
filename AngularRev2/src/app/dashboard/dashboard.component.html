@@ -1,10 +1,21 @@
 <p>post here</p>
 
-<!-- <div *ngFor="let post of posts"
+ <div *ngFor="let post of posts"
 {{post.postsId}}
 {{post.likes}}
 {{post.dislikes}}
-></div> -->
+></div>
+<div>
+  <h3>Posts</h3>
+  <ul>
+    <li *ngFor="let post of posts">
+      {{post.postId}}
+      {{post.authorId}}
+      {{post.likes}}
+      {{post.dislikes}}
+    </li>
+  </ul>
+</div>
 
 
 <form>
@@ -14,3 +25,6 @@
 
 <h1>I am here!</h1>
 <p>Welcome </p>
+
+<p> update Test </p>
+<button id="postBtn" type="button" (click)="updatePost()">update Test</button>

@@ -13,7 +13,7 @@ import { Posts } from '../models/posts';
 })
 export class DashboardComponent implements OnInit {
   @Input() account: Account;
-  @Input() posts: Posts;  //Or Posts[] ?
+  @Input() posts: Posts[];  //Or Posts[] ?
 
   postmsg: string;
 
@@ -22,10 +22,10 @@ export class DashboardComponent implements OnInit {
      this.getSession();
      this.viewPosts();
 
-     this.posts.postId = 0;
-     this.posts.authorId = 0;
-     this.posts.likes = 0;
-     this.posts.dislikes = 0;
+     // this.posts.postId = 0;
+     // this.posts.authorId = 0;
+     // this.posts.likes = 0;
+     // this.posts.dislikes = 0;
   }
 
   ngOnInit(): void {
@@ -33,11 +33,24 @@ export class DashboardComponent implements OnInit {
 
   submitPost() {
      console.log(this.account + " submit post");
-     // this.postsServ.submitPost().subscribe(
-     //   res => {
-     //     this.posts = res;
-     //   }
-     // );
+
+     const data = {
+       postId: 0,
+       authorId: 1,
+       parentPostId: 0,
+       flaggedForReview: false,
+       likes: 0,
+       dislikes: 0,
+       lastActivityDate: 0
+     }
+
+     this.postsServ.submitPost(data).subscribe(
+       res => {
+         console.log(res);
+       },
+       error => {
+         console.log(error);
+       });
    }
   //   this.postServ.submitPost()subscribe(
   //     (response: Posts[] => {
@@ -45,18 +58,47 @@ export class DashboardComponent implements OnInit {
   //     });
   // }
   //
-  // updatePosts() {
-  //   console.log("updating" + this.posts.postsId);
-  //   this.postServ.updatePosts(this.postsId).subscribe(
-  //     response: Posts[] => {
-  //       this.posts = response;
-  //     }
-  //   );
+  updatePost() {
+    console.log("updating");
+
+    const data = {
+      postId: 0,
+      authorId: 1,//loggedAccount.peopleId,
+      parentPostId: 0,
+      flaggedForReview: true,
+      likes: 10,
+      dislikes: 0,
+      lastActivityDate: 0
+    }
+
+    this.postsServ.updatePost(14, data).subscribe(
+      res => {
+        console.log(res);
+      },
+      error => {
+        console.log(error);
+      });
+  }
+  //   this.postsServ.updatePost(14).subscribe(
+  //     res => {
+  //       this.posts = res;
+  //       console.log(res)
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     });
   // }
-  //
+
   viewPosts(){
     console.log("view posts");
-
+    this.postsServ.viewPosts().subscribe(
+      posts => {
+        this.posts = posts;
+        console.log(posts);
+        },
+        error => {
+        console.log(error);
+      });
   }
   //    this.postsServ.viewPosts().subscribe
   //      (response: Posts[]) => {
