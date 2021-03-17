@@ -62,11 +62,10 @@ export class DashboardComponent implements OnInit {
     this.newPost.dislikes = 0;
     this.newPost.lastActivityDate = null;
     this.newContent = new Content();
-    this.newContent.postDate = null;
     this.newContent.enable = true;
     this.newContent.message = this.postmsg;
     this.newContent.image = "";
-    this.newPost.contentId = {...this.newContent};
+    this.newPost.contentId = this.newContent;
 
     this.accountServ.submitPost(this.newPost).subscribe(
       res => {
