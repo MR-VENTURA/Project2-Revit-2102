@@ -1,4 +1,4 @@
 <app-navbar [account]="userAccount"></app-navbar>
-<router-outlet></router-outlet>
+<router-outlet (activate)="getSession()"></router-outlet>
 <!-- <app-login *ngIf="userAccount.peopleId == null" [account]="userAccount"></app-login>
 <app-dashboard *ngIf="userAccount.peopleId != null" [account]="userAccount"></app-dashboard> -->

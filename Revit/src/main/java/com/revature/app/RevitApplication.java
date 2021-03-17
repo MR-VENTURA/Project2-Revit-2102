@@ -19,7 +19,7 @@ public class RevitApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
 					.allowedMethods("GET", "OPTIONS", "PUT", "POST", "DELETE", "PATCH")
-					.allowedOrigins("http://localhost:4200")
+					.allowedOrigins("*")
 					.allowedHeaders("*")
 					.allowCredentials(true);
 			}

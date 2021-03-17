@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="account_statuses")
 public class Status {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,5 +65,6 @@ public class Status {
 	public String toString() {
 		return "Status [statusId=" + statusId + ", status=" + status + "]";
 	}
+	
 	
 }

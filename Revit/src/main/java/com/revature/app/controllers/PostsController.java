@@ -39,8 +39,9 @@ public class PostsController {
 	
 	@PostMapping
 	public ResponseEntity<Posts> addPost(@RequestBody Posts p){
+		System.out.println(p + " ***************");
 		Integer id = postServ.addPosts(p);
-		return ResponseEntity.created(URI.create("jdbc:postgresql://project-2.cncizezosbtp.us-east-2.rds.amazonaws.com:5432/Project2-Revit-2102/Revit/posts/"+id)).build();
+		return getPostById(id);
 	}
 	
 	@GetMapping(path ="/{id}")

@@ -5,15 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="post_content")
 public class Content {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer contentId;
-	@Column(name = "post_id")
-	private Integer postId;
 	@Column(name = "post_date")
 	private Long postDate;
 	private Boolean enabled;
@@ -22,7 +24,6 @@ public class Content {
 	
 	public Content() {
 		this.contentId = 0;
-		this.postId = 0;
 		this.postDate = null;
 		this.enabled = false;
 		this.image = "";
@@ -34,12 +35,6 @@ public class Content {
 	}
 	public void setContentId(Integer contentId) {
 		this.contentId = contentId;
-	}
-	public Integer getPostId() {
-		return postId;
-	}
-	public void setPostId(Integer postId) {
-		this.postId = postId;
 	}
 	public Long getPostDate() {
 		return postDate;
@@ -74,7 +69,6 @@ public class Content {
 		result = prime * result + ((image == null) ? 0 : image.hashCode());
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
 		result = prime * result + ((postDate == null) ? 0 : postDate.hashCode());
-		result = prime * result + ((postId == null) ? 0 : postId.hashCode());
 		return result;
 	}
 	@Override
@@ -111,18 +105,12 @@ public class Content {
 				return false;
 		} else if (!postDate.equals(other.postDate))
 			return false;
-		if (postId == null) {
-			if (other.postId != null)
-				return false;
-		} else if (!postId.equals(other.postId))
-			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Content [contentId=" + contentId + ", postId=" + postId + ", postDate=" + postDate + ", enabled="
+		return "Content [contentId=" + contentId + ", postDate=" + postDate + ", enabled="
 				+ enabled + ", message=" + message + ", image=" + image + "]";
 	}
-	
-	
+		
 }

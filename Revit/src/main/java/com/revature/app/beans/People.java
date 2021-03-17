@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class People {
@@ -15,15 +17,17 @@ public class People {
 	private String username;
 	@Column(name="userpass")
 	private String userPass;
-	@Column(name="account_statuses")
-	private Integer accountStatuses;
-	@Column(name="account_roles")
-	private Integer accountRoles;
+	@ManyToOne
+	@JoinColumn(name="account_statuses")
+	private Status accountStatuses;
+	@ManyToOne
+	@JoinColumn(name="account_roles")
+	private Roles accountRoles;
 	
 	public People() {
 		peopleId =0;
-		accountRoles = 0;
-		accountStatuses = 0;
+		accountRoles = new Roles();
+		accountStatuses = new Status();
 		username = "";
 		userPass = "";
 		
@@ -46,16 +50,16 @@ public class People {
 	public void setUserPass(String userPass) {
 		this.userPass = userPass;
 	}
-	public Integer getAccountStatuses() {
+	public Status getAccountStatuses() {
 		return accountStatuses;
 	}
-	public void setAccountStatuses(Integer accountStatuses) {
+	public void setAccountStatuses(Status accountStatuses) {
 		this.accountStatuses = accountStatuses;
 	}
-	public Integer getAccountRoles() {
+	public Roles getAccountRoles() {
 		return accountRoles;
 	}
-	public void setAccountRoles(Integer accountRoles) {
+	public void setAccountRoles(Roles accountRoles) {
 		this.accountRoles = accountRoles;
 	}
 	@Override
@@ -110,5 +114,6 @@ public class People {
 		return "People [peopleId=" + peopleId + ", username=" + username + ", userPass=" + userPass
 				+ ", accountStatuses=" + accountStatuses + ", accountRoles=" + accountRoles + "]";
 	}
+	
 	
 }

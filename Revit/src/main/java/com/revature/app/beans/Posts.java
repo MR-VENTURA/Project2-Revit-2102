@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Posts {
@@ -12,24 +15,29 @@ public class Posts {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer postId;
-	@Column(name="author_id")
-	private Integer authorId;
-	@Column(name="parent_post_id")
-	private Integer parentPostId;
+	@ManyToOne
+	@JoinColumn(name="author_id")
+	private People authorId;
+	@ManyToOne
+	@JoinColumn(name="parent_post_id")
+	private Posts parentPostId;
 	@Column(name="flagged_for_review")
 	private Boolean flaggedForReview;
 	private Integer likes;
 	private Integer dislikes;
-	@Column(name="last_activity_date")
+	@Column(name="last_activity_date", insertable = false)
 	private Long lastActivityDate;
+	@ManyToOne
+	@JoinColumn(name="content_id")
+	private Content contentId;
 	
 	public Posts() {
-		this.authorId = 0;
+		this.authorId = new People();
 		this.dislikes = 0;
 		this.likes = 0;
 		this.flaggedForReview = false;
 		this.lastActivityDate = null;
-		this.parentPostId = 0;
+		this.parentPostId = null;
 		this.postId = 0;
 
 	}
@@ -39,16 +47,16 @@ public class Posts {
 	public void setPostId(Integer postId) {
 		this.postId = postId;
 	}
-	public Integer getAuthorId() {
+	public People getAuthorId() {
 		return authorId;
 	}
-	public void setAuthorId(Integer authorId) {
+	public void setAuthorId(People authorId) {
 		this.authorId = authorId;
 	}
-	public Integer getParentPostId() {
+	public Posts getParentPostId() {
 		return parentPostId;
 	}
-	public void setParentPostId(Integer parentPostId) {
+	public void setParentPostId(Posts parentPostId) {
 		this.parentPostId = parentPostId;
 	}
 	public Boolean getFlaggedForReview() {
@@ -75,11 +83,19 @@ public class Posts {
 	public void setLastActivityDate(Long lastActivityDate) {
 		this.lastActivityDate = lastActivityDate;
 	}
+	
+	public Content getContentId() {
+		return contentId;
+	}
+	public void setContentId(Content contentId) {
+		this.contentId = contentId;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((authorId == null) ? 0 : authorId.hashCode());
+		result = prime * result + ((contentId == null) ? 0 : contentId.hashCode());
 		result = prime * result + ((dislikes == null) ? 0 : dislikes.hashCode());
 		result = prime * result + ((flaggedForReview == null) ? 0 : flaggedForReview.hashCode());
 		result = prime * result + ((lastActivityDate == null) ? 0 : lastActivityDate.hashCode());
@@ -101,6 +117,11 @@ public class Posts {
 			if (other.authorId != null)
 				return false;
 		} else if (!authorId.equals(other.authorId))
+			return false;
+		if (contentId == null) {
+			if (other.contentId != null)
+				return false;
+		} else if (!contentId.equals(other.contentId))
 			return false;
 		if (dislikes == null) {
 			if (other.dislikes != null)
@@ -138,7 +159,9 @@ public class Posts {
 	public String toString() {
 		return "Posts [postId=" + postId + ", authorId=" + authorId + ", parentPostId=" + parentPostId
 				+ ", flaggedForReview=" + flaggedForReview + ", likes=" + likes + ", dislikes=" + dislikes
-				+ ", lastActivityDate=" + lastActivityDate + "]";
+				+ ", lastActivityDate=" + lastActivityDate + ", contentId=" + contentId + "]";
 	}
+	
+	
 	
 }

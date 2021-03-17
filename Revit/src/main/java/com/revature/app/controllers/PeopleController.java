@@ -38,7 +38,6 @@ public class PeopleController {
 	@GetMapping
 	public ResponseEntity<People> checkLogin(HttpSession session) {
 		People loggedPeople = (People) session.getAttribute("username");
-		System.out.println(loggedPeople);
 		if (loggedPeople == null)
 			return ResponseEntity.badRequest().build();
 		return ResponseEntity.ok(loggedPeople);

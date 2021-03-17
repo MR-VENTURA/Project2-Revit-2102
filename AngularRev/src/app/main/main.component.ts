@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Account } from '../models/account';
 import { AccountRole } from '../models/account-role';
@@ -11,7 +11,7 @@ import { AccountService } from '../services/account.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
+  
   userAccount: Account;
 
   constructor(private router: Router, private accountServ: AccountService) {
