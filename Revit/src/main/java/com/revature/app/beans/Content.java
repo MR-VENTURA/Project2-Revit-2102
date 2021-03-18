@@ -16,8 +16,9 @@ public class Content {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer contentId;
-	@Column(name = "post_date")
+	@Column(name = "post_date", insertable = false)
 	private Long postDate;
+	@Column(name = "enabled", insertable = false)
 	private Boolean enabled;
 	private String message;
 	private String image;

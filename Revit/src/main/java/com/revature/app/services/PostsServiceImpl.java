@@ -57,11 +57,14 @@ public class PostsServiceImpl implements PostsService {
 
 	@Override
 	public Set<Posts> getAllPosts() {
-		// TODO Auto-generated method stub
 		List<Posts> postList = postsDao.findAll();
 		Set<Posts> postSet = new HashSet<>();
 		postSet.addAll(postList);
 		return postSet;
 	}
 	
+	@Override
+	public Set<Posts> findAllByLatestDesc() {
+		return postsDao.findAllByLatestDesc();
+	}
 }

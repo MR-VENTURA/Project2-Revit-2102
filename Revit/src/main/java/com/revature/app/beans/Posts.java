@@ -1,5 +1,6 @@
 package com.revature.app.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class Posts {
 	private Integer dislikes;
 	@Column(name="last_activity_date", insertable = false)
 	private Long lastActivityDate;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="content_id")
 	private Content contentId;
 	
