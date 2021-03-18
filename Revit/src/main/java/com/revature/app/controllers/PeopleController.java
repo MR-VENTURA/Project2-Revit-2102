@@ -1,6 +1,8 @@
 package com.revature.app.controllers;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -89,5 +91,16 @@ public class PeopleController {
 		}
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 	}
-
+	
+	@GetMapping(path="/banned")
+	public ResponseEntity<Set<People>> getBannedPeople(){
+		Set<People> people = peopleServ.getAllPeople();
+		Set<People> bannedPeople = new HashSet<>();
+		for(People person : people) {
+			if(person.getAccountStatuses().getStatus().equals("Banned")) {
+				bannedPeople.add(person);
+			}
+		}
+		return ResponseEntity.ok(bannedPeople);
+	}
 }
