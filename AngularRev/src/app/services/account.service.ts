@@ -56,7 +56,6 @@ export class AccountService {
     post.dislikes = 0;
     post.lastActivityDate = null;
     let newContent = new Content();
-    newContent.enable = true;
     newContent.message = msg;
     newContent.image = "";
     post.contentId = newContent;
