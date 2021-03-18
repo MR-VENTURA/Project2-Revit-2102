@@ -50,7 +50,6 @@ export class DashboardComponent implements OnInit {
   }
 
   submitPost() {
-
     this.accountServ.submitPost(this.account, this.postmsg).subscribe(
       res => {
         if(res) {
