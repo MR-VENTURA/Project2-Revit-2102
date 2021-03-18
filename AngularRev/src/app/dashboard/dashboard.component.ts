@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Account } from '../models/account';
+import { Content } from '../models/content';
+import { Post } from '../models/post';
 import { AccountService } from '../services/account.service';
 
 @Component({
@@ -10,14 +12,14 @@ import { AccountService } from '../services/account.service';
 })
 export class DashboardComponent implements OnInit {
   @Input() account: Account;
-
-  postmsg: string;
   
-  constructor(private router: Router, private accountServ: AccountService) {
-    this.getSession();
-  }
+  postmsg: string;
+  posts: Post;
+
+  constructor(private router: Router, private accountServ: AccountService) {}
 
   ngOnInit(): void {
+    this.getSession();
   }
 
   getSession() {
@@ -25,13 +27,35 @@ export class DashboardComponent implements OnInit {
       res => {
         if(res) {
           this.account = res;
-          console.log(this.account, " dashboard");
-          if(this.account.peopleId != null)
+          if(this.account.peopleId != null) {
             this.router.navigate(['home']);
+            this.getPosts();
+          }
+        }
+      },
+      error => {
+        this.router.navigate(['/']);
+      }
+    )
+  }
+
+  getPosts() {
+    this.accountServ.getPosts().subscribe(
+      res => {
+        if(res) {
+          this.posts = res;
         }
       }
     )
   }
 
-  
+  submitPost() {
+    this.accountServ.submitPost(this.account, this.postmsg).subscribe(
+      res => {
+        if(res) {
+          this.getPosts();
+        }
+      }
+    )
+  }
 }

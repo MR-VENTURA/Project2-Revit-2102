@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +39,6 @@ public class PeopleController {
 	@GetMapping
 	public ResponseEntity<People> checkLogin(HttpSession session) {
 		People loggedPeople = (People) session.getAttribute("username");
-		System.out.println(loggedPeople);
 		if (loggedPeople == null)
 			return ResponseEntity.badRequest().build();
 		return ResponseEntity.ok(loggedPeople);
@@ -63,6 +63,12 @@ public class PeopleController {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@DeleteMapping
+	public ResponseEntity<Void> logOut(HttpSession session) {
+		session.invalidate();
+		return ResponseEntity.ok().build();
+	}
+
 	@PostMapping
 	public ResponseEntity<Void> registerUser(HttpSession session, @RequestBody People people) {
 		try {

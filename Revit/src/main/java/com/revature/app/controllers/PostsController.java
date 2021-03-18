@@ -33,14 +33,14 @@ public class PostsController {
 	
 	@GetMapping
 	public ResponseEntity<Set<Posts>> getAllPosts(){
-		Set<Posts> posts = postServ.getAllPosts();
+		Set<Posts> posts = postServ.findAllByLatestDesc();
 		return ResponseEntity.ok(posts);
 	}
 	
 	@PostMapping
 	public ResponseEntity<Posts> addPost(@RequestBody Posts p){
 		Integer id = postServ.addPosts(p);
-		return ResponseEntity.created(URI.create("jdbc:postgresql://project-2.cncizezosbtp.us-east-2.rds.amazonaws.com:5432/Project2-Revit-2102/Revit/posts/"+id)).build();
+		return getPostById(id);
 	}
 	
 	@GetMapping(path ="/{id}")
@@ -59,10 +59,10 @@ public class PostsController {
 	}
 	
 	@PutMapping(path="/{id}")
-	public ResponseEntity<Void> updatePost(@PathVariable("id") Integer id){
-		Posts p = null;
+	public ResponseEntity<Void> updatePost(@PathVariable("id") Integer id, @RequestBody Posts p) {
 		try {
-			p = postServ.findByPostId(id);
+			System.out.println(p + " ******************");
+			postServ.updatePosts(p);
 		} catch (PostNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

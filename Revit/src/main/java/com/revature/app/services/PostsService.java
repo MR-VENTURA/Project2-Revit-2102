@@ -17,4 +17,6 @@ public interface PostsService {
 	//update
 	public void updatePosts(Posts ps)throws PostNotFoundException;
 	public Set<Posts> getAllPosts();
+	
+	public Set<Posts> findAllByLatestDesc();
 }

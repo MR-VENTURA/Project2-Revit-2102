@@ -2,8 +2,10 @@
     <div class="row">
         <div class="post-submittion">
             <textarea rows="5" id="post" name="post" class="post-big" [(ngModel)]="postmsg" placeholder="What would you like to share?"></textarea>
-            <button id="getBtn" type="button" class="btn-post">Post</button>
+            <button id="getBtn" type="button" class="btn-post" (click)="submitPost()">Post</button>
         </div>
     </div>
-    <app-post></app-post>
+    <ng-container *ngFor="let p of posts">
+        <app-post [userAccount]="account" [post]="p"></app-post>
+    </ng-container>
 </div>
