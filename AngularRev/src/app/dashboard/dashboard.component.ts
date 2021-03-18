@@ -16,14 +16,10 @@ export class DashboardComponent implements OnInit {
   postmsg: string;
   posts: Post;
 
-  newPost: Post;
-  newContent: Content;
-
   constructor(private router: Router, private accountServ: AccountService) {}
 
   ngOnInit(): void {
     this.getSession();
-    this.getPosts();
   }
 
   getSession() {
@@ -31,9 +27,10 @@ export class DashboardComponent implements OnInit {
       res => {
         if(res) {
           this.account = res;
-          console.log(this.account, " dashboard");
-          if(this.account.peopleId != null)
+          if(this.account.peopleId != null) {
             this.router.navigate(['home']);
+            this.getPosts();
+          }
         }
       },
       error => {
@@ -53,21 +50,8 @@ export class DashboardComponent implements OnInit {
   }
 
   submitPost() {
-    this.newPost = new Post();
-    this.newPost.postId = null;
-    this.newPost.authorId = this.account;
-    this.newPost.parentPostId = null;
-    this.newPost.flaggedForReview = false;
-    this.newPost.likes = 0;
-    this.newPost.dislikes = 0;
-    this.newPost.lastActivityDate = null;
-    this.newContent = new Content();
-    this.newContent.enable = true;
-    this.newContent.message = this.postmsg;
-    this.newContent.image = "";
-    this.newPost.contentId = this.newContent;
 
-    this.accountServ.submitPost(this.newPost).subscribe(
+    this.accountServ.submitPost(this.account, this.postmsg).subscribe(
       res => {
         if(res) {
           this.getPosts();

@@ -37,6 +37,13 @@ export class MainComponent implements OnInit {
           if(this.userAccount.peopleId != null)
             this.router.navigate(['home']);
         }
+      },
+      error => {
+        this.userAccount.peopleId = null; // Set id == null. Check if id is null. Not logged in.
+        this.userAccount.accountRoles = new AccountRole();
+        this.userAccount.accountStatuses = new AccountStatus();
+        this.userAccount.username = '';
+        this.userAccount.userPass = '';
       }
     )
   }
