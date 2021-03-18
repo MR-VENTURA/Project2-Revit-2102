@@ -6,6 +6,6 @@
         </div>
     </div>
     <ng-container *ngFor="let p of posts">
-        <app-post [post]="p"></app-post>
+        <app-post [userAccount]="account" [post]="p"></app-post>
     </ng-container>
 </div>

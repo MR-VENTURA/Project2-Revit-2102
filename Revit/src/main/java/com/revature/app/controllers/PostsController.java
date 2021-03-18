@@ -33,17 +33,20 @@ public class PostsController {
 	
 	@GetMapping
 	public ResponseEntity<Set<Posts>> getAllPosts(){
-		Set<Posts> posts = postServ.getAllPosts();
+		Set<Posts> posts = postServ.findAllByLatestDesc();
 		return ResponseEntity.ok(posts);
 	}
 	
 	@PostMapping
 	public ResponseEntity<Posts> addPost(@RequestBody Posts p){
 <<<<<<< HEAD
+<<<<<<< HEAD
 		Integer id = postServ.addPosts(p);
 		return ResponseEntity.created(URI.create("http://localhost:8081/revit/posts/"+id)).build();
 =======
 		System.out.println(p + " ***************");
+=======
+>>>>>>> c176e0e1bd88c9db50ac0c1dd470e56cd3773fc7
 		Integer id = postServ.addPosts(p);
 		return getPostById(id);
 >>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
@@ -65,14 +68,19 @@ public class PostsController {
 	}
 	
 	@PutMapping(path="/{id}")
+<<<<<<< HEAD
 	public ResponseEntity<Void> updatePost(@PathVariable("id") Integer id){
 <<<<<<< HEAD
 		System.out.println("hit update Posts");
 =======
 >>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 		Posts p = null;
+=======
+	public ResponseEntity<Void> updatePost(@PathVariable("id") Integer id, @RequestBody Posts p) {
+>>>>>>> c176e0e1bd88c9db50ac0c1dd470e56cd3773fc7
 		try {
-			p = postServ.findByPostId(id);
+			System.out.println(p + " ******************");
+			postServ.updatePosts(p);
 		} catch (PostNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

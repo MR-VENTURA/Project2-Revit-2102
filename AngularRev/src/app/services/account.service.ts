@@ -40,6 +40,12 @@ export class AccountService {
     );
   }
 
+  getOnePost(id: number): Observable<Post> {
+    return this.http.get(`http://localhost:8081/revit/posts/${id}`, {withCredentials: true}).pipe(
+      map(res => res as Post)
+    );
+  }
+
   submitPost(account: Account, msg: string): Observable<Post> {
     let post = new Post();
     post.postId = null;
@@ -50,7 +56,6 @@ export class AccountService {
     post.dislikes = 0;
     post.lastActivityDate = null;
     let newContent = new Content();
-    newContent.enable = true;
     newContent.message = msg;
     newContent.image = "";
     post.contentId = newContent;

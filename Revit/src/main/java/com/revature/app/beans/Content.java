@@ -22,12 +22,17 @@ public class Content {
 	@Column(name = "id")
 	private Integer contentId;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	@Column(name = "post_id")
 	private Integer postId;
 =======
 >>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 	@Column(name = "post_date")
+=======
+	@Column(name = "post_date", insertable = false)
+>>>>>>> c176e0e1bd88c9db50ac0c1dd470e56cd3773fc7
 	private Long postDate;
+	@Column(name = "enabled", insertable = false)
 	private Boolean enabled;
 	private String message;
 	private String image;
