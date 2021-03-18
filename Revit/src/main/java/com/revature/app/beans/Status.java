@@ -5,8 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+<<<<<<< HEAD
 
 @Entity
+=======
+import javax.persistence.Table;
+
+@Entity
+@Table(name="account_statuses")
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 public class Status {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,4 +71,8 @@ public class Status {
 		return "Status [statusId=" + statusId + ", status=" + status + "]";
 	}
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 }

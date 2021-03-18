@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Revit</a>
+        <ng-container *ngIf="account.peopleId != null">
+            <!-- Links -->
+            <ul class="navbar-nav nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link nav-active" href="#">Home</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">Link 2</a>
+                </li> -->
+
+                <!-- Dropdown -->
+                <li class="nav-item dropdown user-nav-right">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        {{ account.username }}
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" (click)="handleLogout()">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </ng-container>
+    </div>
+</nav>

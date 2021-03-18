@@ -1,18 +1,22 @@
 <p>post here</p>
 
- <div *ngFor="let post of posts"
-{{post.postsId}}
-{{post.likes}}
-{{post.dislikes}}
-></div>
 <div>
   <h3>Posts</h3>
   <ul>
     <li *ngFor="let post of posts">
       {{post.postId}}
-      {{post.authorId}}
-      {{post.likes}}
-      {{post.dislikes}}
+      {{post.authorId.username}}
+
+      {{post.contentId.message}}
+
+      likes: {{post.likes}}
+      <button (click)="like(post)" class='like'>Like</button>
+      dislikes: {{post.dislikes}}
+      <button (click)="dislike(post)" class='like'>Dislike</button>
+      <button (click)="flagPost(post)" class='flag'>Flag</button>
+      <button (click)="updatePost(post)" class='updateContent'>Update</button>
+      <button (click)="getPost(post.postId)" class='flag'>Get</button>
+      <button (click)="hidePost(post)" class='hidePost'>Delete</button>
     </li>
   </ul>
 </div>
@@ -27,4 +31,4 @@
 <p>Welcome </p>
 
 <p> update Test </p>
-<button id="postBtn" type="button" (click)="updatePost()">update Test</button>
+<button id="postBtn" type="button" (click)="updatePost(post)">update Test</button>

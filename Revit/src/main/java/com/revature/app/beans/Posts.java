@@ -5,6 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+<<<<<<< HEAD
+=======
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 
 @Entity
 public class Posts {
@@ -12,24 +18,48 @@ public class Posts {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer postId;
+<<<<<<< HEAD
 	@Column(name="author_id")
 	private Integer authorId;
 	@Column(name="parent_post_id")
 	private Integer parentPostId;
+=======
+	@ManyToOne
+	@JoinColumn(name="author_id")
+	private People authorId;
+	@ManyToOne
+	@JoinColumn(name="parent_post_id")
+	private Posts parentPostId;
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 	@Column(name="flagged_for_review")
 	private Boolean flaggedForReview;
 	private Integer likes;
 	private Integer dislikes;
+<<<<<<< HEAD
 	@Column(name="last_activity_date")
 	private Long lastActivityDate;
 	
 	public Posts() {
 		this.authorId = 0;
+=======
+	@Column(name="last_activity_date", insertable = false)
+	private Long lastActivityDate;
+	@ManyToOne
+	@JoinColumn(name="content_id")
+	private Content contentId;
+	
+	public Posts() {
+		this.authorId = new People();
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 		this.dislikes = 0;
 		this.likes = 0;
 		this.flaggedForReview = false;
 		this.lastActivityDate = null;
+<<<<<<< HEAD
 		this.parentPostId = 0;
+=======
+		this.parentPostId = null;
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 		this.postId = 0;
 
 	}
@@ -39,6 +69,7 @@ public class Posts {
 	public void setPostId(Integer postId) {
 		this.postId = postId;
 	}
+<<<<<<< HEAD
 	public Integer getAuthorId() {
 		return authorId;
 	}
@@ -49,6 +80,18 @@ public class Posts {
 		return parentPostId;
 	}
 	public void setParentPostId(Integer parentPostId) {
+=======
+	public People getAuthorId() {
+		return authorId;
+	}
+	public void setAuthorId(People authorId) {
+		this.authorId = authorId;
+	}
+	public Posts getParentPostId() {
+		return parentPostId;
+	}
+	public void setParentPostId(Posts parentPostId) {
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 		this.parentPostId = parentPostId;
 	}
 	public Boolean getFlaggedForReview() {
@@ -75,11 +118,25 @@ public class Posts {
 	public void setLastActivityDate(Long lastActivityDate) {
 		this.lastActivityDate = lastActivityDate;
 	}
+<<<<<<< HEAD
+=======
+	
+	public Content getContentId() {
+		return contentId;
+	}
+	public void setContentId(Content contentId) {
+		this.contentId = contentId;
+	}
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((authorId == null) ? 0 : authorId.hashCode());
+<<<<<<< HEAD
+=======
+		result = prime * result + ((contentId == null) ? 0 : contentId.hashCode());
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 		result = prime * result + ((dislikes == null) ? 0 : dislikes.hashCode());
 		result = prime * result + ((flaggedForReview == null) ? 0 : flaggedForReview.hashCode());
 		result = prime * result + ((lastActivityDate == null) ? 0 : lastActivityDate.hashCode());
@@ -102,6 +159,14 @@ public class Posts {
 				return false;
 		} else if (!authorId.equals(other.authorId))
 			return false;
+<<<<<<< HEAD
+=======
+		if (contentId == null) {
+			if (other.contentId != null)
+				return false;
+		} else if (!contentId.equals(other.contentId))
+			return false;
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 		if (dislikes == null) {
 			if (other.dislikes != null)
 				return false;
@@ -138,7 +203,15 @@ public class Posts {
 	public String toString() {
 		return "Posts [postId=" + postId + ", authorId=" + authorId + ", parentPostId=" + parentPostId
 				+ ", flaggedForReview=" + flaggedForReview + ", likes=" + likes + ", dislikes=" + dislikes
+<<<<<<< HEAD
 				+ ", lastActivityDate=" + lastActivityDate + "]";
 	}
 	
+=======
+				+ ", lastActivityDate=" + lastActivityDate + ", contentId=" + contentId + "]";
+	}
+	
+	
+	
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 }

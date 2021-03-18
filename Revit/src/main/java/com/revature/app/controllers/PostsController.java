@@ -39,8 +39,14 @@ public class PostsController {
 	
 	@PostMapping
 	public ResponseEntity<Posts> addPost(@RequestBody Posts p){
+<<<<<<< HEAD
 		Integer id = postServ.addPosts(p);
 		return ResponseEntity.created(URI.create("http://localhost:8081/revit/posts/"+id)).build();
+=======
+		System.out.println(p + " ***************");
+		Integer id = postServ.addPosts(p);
+		return getPostById(id);
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 	}
 	
 	@GetMapping(path ="/{id}")
@@ -60,7 +66,10 @@ public class PostsController {
 	
 	@PutMapping(path="/{id}")
 	public ResponseEntity<Void> updatePost(@PathVariable("id") Integer id){
+<<<<<<< HEAD
 		System.out.println("hit update Posts");
+=======
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 		Posts p = null;
 		try {
 			p = postServ.findByPostId(id);

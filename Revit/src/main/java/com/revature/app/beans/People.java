@@ -5,6 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+<<<<<<< HEAD
+=======
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 
 @Entity
 public class People {
@@ -15,6 +20,7 @@ public class People {
 	private String username;
 	@Column(name="userpass")
 	private String userPass;
+<<<<<<< HEAD
 	@Column(name="account_statuses")
 	private Integer accountStatuses;
 	@Column(name="account_roles")
@@ -24,6 +30,19 @@ public class People {
 		peopleId =0;
 		accountRoles = 0;
 		accountStatuses = 0;
+=======
+	@ManyToOne
+	@JoinColumn(name="account_statuses")
+	private Status accountStatuses;
+	@ManyToOne
+	@JoinColumn(name="account_roles")
+	private Roles accountRoles;
+	
+	public People() {
+		peopleId =0;
+		accountRoles = new Roles();
+		accountStatuses = new Status();
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 		username = "";
 		userPass = "";
 		
@@ -46,6 +65,7 @@ public class People {
 	public void setUserPass(String userPass) {
 		this.userPass = userPass;
 	}
+<<<<<<< HEAD
 	public Integer getAccountStatuses() {
 		return accountStatuses;
 	}
@@ -56,6 +76,18 @@ public class People {
 		return accountRoles;
 	}
 	public void setAccountRoles(Integer accountRoles) {
+=======
+	public Status getAccountStatuses() {
+		return accountStatuses;
+	}
+	public void setAccountStatuses(Status accountStatuses) {
+		this.accountStatuses = accountStatuses;
+	}
+	public Roles getAccountRoles() {
+		return accountRoles;
+	}
+	public void setAccountRoles(Roles accountRoles) {
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 		this.accountRoles = accountRoles;
 	}
 	@Override
@@ -111,4 +143,8 @@ public class People {
 				+ ", accountStatuses=" + accountStatuses + ", accountRoles=" + accountRoles + "]";
 	}
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 }

@@ -11,8 +11,8 @@ export class PostsService {
 
   constructor(private http: HttpClient) { }
 
-  public submitPost(posts : Posts): Observable<Posts> {
-    return this.http.post('http://localhost:8081/revit/posts', posts).pipe(
+  public submitPost(data : Posts): Observable<Posts> {
+    return this.http.post('http://localhost:8081/revit/posts', data).pipe(
       map(res => res as Posts) );
   };
 
@@ -31,9 +31,13 @@ export class PostsService {
         return this.http.get<Posts[]>('http://localhost:8081/revit/posts');
       }
 
-  public updatePost(postId : any, value: any): Observable<Posts> {
-    return this.http.put('http://localhost:8081/revit/posts/'+ postId, value).pipe(
-      map(res => res as Posts) );
-  };
+  public getPost(postId): Observable<Posts> {
+    return this.http.get('http://localhost:8081/revit/posts/' + postId).pipe(
+    map(res => res as Posts));
+  }
 
+  public updatePost(postId : any, data: any): Observable<any> {
+    return this.http.put('http://localhost:8081/revit/posts/'+ postId, data).pipe(
+    map(res => res as Posts) );
+  };
 }

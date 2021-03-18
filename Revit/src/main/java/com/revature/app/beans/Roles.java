@@ -5,8 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+<<<<<<< HEAD
 
 @Entity
+=======
+import javax.persistence.Table;
+
+@Entity
+@Table(name="account_roles")
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 public class Roles {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

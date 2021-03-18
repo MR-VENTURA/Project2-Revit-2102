@@ -5,15 +5,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+<<<<<<< HEAD
 
 @Entity
+=======
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="post_content")
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 public class Content {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer contentId;
+<<<<<<< HEAD
 	@Column(name = "post_id")
 	private Integer postId;
+=======
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 	@Column(name = "post_date")
 	private Long postDate;
 	private Boolean enabled;
@@ -22,7 +34,10 @@ public class Content {
 	
 	public Content() {
 		this.contentId = 0;
+<<<<<<< HEAD
 		this.postId = 0;
+=======
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 		this.postDate = null;
 		this.enabled = false;
 		this.image = "";
@@ -35,12 +50,15 @@ public class Content {
 	public void setContentId(Integer contentId) {
 		this.contentId = contentId;
 	}
+<<<<<<< HEAD
 	public Integer getPostId() {
 		return postId;
 	}
 	public void setPostId(Integer postId) {
 		this.postId = postId;
 	}
+=======
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 	public Long getPostDate() {
 		return postDate;
 	}
@@ -74,7 +92,10 @@ public class Content {
 		result = prime * result + ((image == null) ? 0 : image.hashCode());
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
 		result = prime * result + ((postDate == null) ? 0 : postDate.hashCode());
+<<<<<<< HEAD
 		result = prime * result + ((postId == null) ? 0 : postId.hashCode());
+=======
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 		return result;
 	}
 	@Override
@@ -111,18 +132,28 @@ public class Content {
 				return false;
 		} else if (!postDate.equals(other.postDate))
 			return false;
+<<<<<<< HEAD
 		if (postId == null) {
 			if (other.postId != null)
 				return false;
 		} else if (!postId.equals(other.postId))
 			return false;
+=======
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 		return true;
 	}
 	@Override
 	public String toString() {
+<<<<<<< HEAD
 		return "Content [contentId=" + contentId + ", postId=" + postId + ", postDate=" + postDate + ", enabled="
 				+ enabled + ", message=" + message + ", image=" + image + "]";
 	}
 	
 	
+=======
+		return "Content [contentId=" + contentId + ", postDate=" + postDate + ", enabled="
+				+ enabled + ", message=" + message + ", image=" + image + "]";
+	}
+		
+>>>>>>> 24230aa5963ae97384957caea8a193b4a53afcf8
 }
