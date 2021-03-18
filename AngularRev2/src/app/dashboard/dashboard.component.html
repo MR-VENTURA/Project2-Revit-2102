@@ -1,34 +1,11 @@
-<p>post here</p>
-
-<div>
-  <h3>Posts</h3>
-  <ul>
-    <li *ngFor="let post of posts">
-      {{post.postId}}
-      {{post.authorId.username}}
-
-      {{post.contentId.message}}
-
-      likes: {{post.likes}}
-      <button (click)="like(post)" class='like'>Like</button>
-      dislikes: {{post.dislikes}}
-      <button (click)="dislike(post)" class='like'>Dislike</button>
-      <button (click)="flagPost(post)" class='flag'>Flag</button>
-      <button (click)="updatePost(post)" class='updateContent'>Update</button>
-      <button (click)="getPost(post.postId)" class='flag'>Get</button>
-      <button (click)="hidePost(post)" class='hidePost'>Delete</button>
-    </li>
-  </ul>
+<div class="container">
+    <div class="row">
+        <div class="post-submittion">
+            <textarea rows="5" id="post" name="post" class="post-big" [(ngModel)]="postmsg" placeholder="What would you like to share?"></textarea>
+            <button id="getBtn" type="button" class="btn-post" (click)="submitPost()">Post</button>
+        </div>
+    </div>
+    <ng-container *ngFor="let p of posts">
+        <app-post [userAccount]="account" [post]="p"></app-post>
+    </ng-container>
 </div>
-
-
-<form>
-<input id="post" type="text" [(ngModel)]="postmsg" name="post"/>
-<button id="postBtn" type="button" (click)="submitPost()">Submit</button>
-</form>
-
-<h1>I am here!</h1>
-<p>Welcome </p>
-
-<p> update Test </p>
-<button id="postBtn" type="button" (click)="updatePost(post)">update Test</button>

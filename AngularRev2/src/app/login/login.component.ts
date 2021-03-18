@@ -5,8 +5,6 @@ import { AccountRole } from '../models/account-role';
 import { AccountStatus } from '../models/account-status';
 import { AccountService } from '../services/account.service';
 
-import{ LocalStorage } from '../services/storage.service';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,11 +12,11 @@ import{ LocalStorage } from '../services/storage.service';
 })
 export class LoginComponent implements OnInit {
   @Input() account: Account;
-
+  
   username: string;
   password: string;
 
-  constructor(private router: Router, private accountServ: AccountService, private localStorage: LocalStorage) {
+  constructor(private router: Router, private accountServ: AccountService) {
     this.username = '';
     this.password = '';
     this.account = new Account();
@@ -40,8 +38,6 @@ export class LoginComponent implements OnInit {
       res => {
         this.account = res;
         this.router.navigate(['home']);
-
-        this.localStorage.setItem("loggedUser", JSON.stringify(this.account))
       }
     )
   }
