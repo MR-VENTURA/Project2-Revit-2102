@@ -12,10 +12,17 @@ import { AccountService } from '../services/account.service';
 })
 export class NavbarComponent implements OnInit {
   @Input() account: Account;
+  page: string;
 
   constructor(private accountServ: AccountService, private router: Router) {}
 
   ngOnInit(): void {
+    this.page = window.location.href.substring(21,window.location.href.length);
+    console.log(this.page);
+  }
+
+  setPage(s: string) {
+    this.page = s;
   }
 
   handleLogout() {
