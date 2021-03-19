@@ -11,7 +11,7 @@ import { AccountService } from '../services/account.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  
+
   userAccount: Account;
 
   constructor(private router: Router, private accountServ: AccountService) {
@@ -34,8 +34,8 @@ export class MainComponent implements OnInit {
       res => {
         if(res) {
           this.userAccount = res;
-          if(this.userAccount.peopleId != null)
-            this.router.navigate(['home']);
+        //  if(this.userAccount.peopleId != null)
+            //this.router.navigate(['home']);
         }
       },
       error => {

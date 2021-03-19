@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MainComponent } from './main/main.component';
 import { PostComponent } from './post/post.component';
 import { SuccessComponent } from './success/success.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SuccessComponent } from './success/success.component';
     NavbarComponent,
     MainComponent,
     PostComponent,
-    SuccessComponent
+    SuccessComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

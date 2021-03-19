@@ -19,7 +19,7 @@ export class PostService {
       map(res => res as Post)
     );
   }
-  
+
   addComment(account: Account, prior: Post, msg: string): Observable<Post> {
     let post = new Post();
     post.postId = null;
@@ -30,7 +30,7 @@ export class PostService {
     post.likes = 0;
     post.dislikes = 0;
     let newContent = new Content();
-    newContent.enable = true;
+    newContent.enabled = true;
     newContent.message = msg;
     newContent.image = "";
     post.contentId = newContent;

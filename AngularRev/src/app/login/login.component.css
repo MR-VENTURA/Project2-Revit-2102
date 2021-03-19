@@ -46,5 +46,26 @@ button {
 button:hover {
     background-color: rgb(5, 80, 179);
     text-decoration: none;
-    color: rgb(229, 231, 235); 
+    color: rgb(229, 231, 235);
+}
+
+.modal-content {
+    margin: auto;
+    margin-top: 8.5rem;
+    max-width: 50%;
+    min-width: 35%;
+    max-width: 80%;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 4px;
+}
+
+.close {
+    cursor: pointer;
+    color: red;
+}
+
+.register{
+  cursor: pointer;
+  color: blue;
 }

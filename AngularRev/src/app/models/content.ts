@@ -1,7 +1,7 @@
 export class Content {
     contentId: number;
     postDate: Date;
-    enable: boolean;
+    enabled: boolean;
     message: string;
     image: string;
 }

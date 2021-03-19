@@ -12,7 +12,7 @@ import { AccountService } from '../services/account.service';
 })
 export class DashboardComponent implements OnInit {
   @Input() account: Account;
-  
+
   postmsg: string;
   posts: Post;
 
@@ -31,8 +31,8 @@ export class DashboardComponent implements OnInit {
         if(res) {
           this.account = res;
           if(this.account.peopleId != null) {
-            this.router.navigate(['home']);
-            this.getPosts();
+              this.router.navigate(['home']);
+              this.getPosts();
           }
         }
       },
