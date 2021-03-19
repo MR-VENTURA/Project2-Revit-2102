@@ -14,18 +14,30 @@
                 <i class="fa fa-ban" [style.color]="isBanned ? 'red': ''"></i>
                 <small>Ban User</small>
             </div>
+            <div class="post-comment" (click)="clickedUnflag()">
+                <i class="fa fa-flag" [style.color]="isFlagged ? 'green': ''"></i>
+                <small>Unflag</small>
+            </div>
             </ng-container>
 
             <ng-container *ngIf="userAccount.username===post.authorId.username || userAccount.accountRoles.role==='Admin'" >
-            <div class="post-comment" (click)="clickedBan()">
+            <div class="post-comment" (click)="clickedEdit()">
                 <i class="fa fa-pencil-square-o"></i>
                 <small>Edit</small>
             </div>
-            <div class="post-comment" (click)="clickedBan()">
+            <div class="post-comment" (click)="clickedDelete()">
                 <i class="fa fa-times"></i>
                 <small>Delete</small>
             </div>
             </ng-container>
+
+            <div id="updateModal" class="modal">
+            <div class="modal-content">
+                <span class="close" (click)="clickedCloseUpdate()">&times;</span>
+                <textarea rows="5" id="post" name="post" class="post-big" [(ngModel)]="postmsg" placeholder="Update Post"></textarea>
+                <button id="getBtn" type="button" class="btn-update" (click)="clickedUpdate()">Update</button>
+            </div>
+            </div>
 
             <div class="detail-like" (click)="clickedLike()">
                 <i class="fa fa-thumbs-up" [style.color]="isLiked ? 'blue': ''"></i>

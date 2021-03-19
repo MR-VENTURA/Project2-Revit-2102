@@ -12,7 +12,7 @@ import { AccountService } from '../services/account.service';
 })
 export class LoginComponent implements OnInit {
   @Input() account: Account;
-  
+
   username: string;
   password: string;
 
@@ -41,4 +41,37 @@ export class LoginComponent implements OnInit {
       }
     )
   }
+
+  //Register
+  clickedRegister() {
+    let modal = document.getElementById("registerModal");
+    modal.style.display = "block";
+
+  }
+
+  clickedConfirm() {
+    this.accountServ.registerAccount(this.username, this.password).subscribe(
+      res => {
+
+        }
+    )
+  }
+
+  clickedClose(){
+    let modal = document.getElementById("registerModal");
+    modal.style.display = "none";
+  }
+
+  //Delete Account
+  // closeAccount(){
+  //   this.originalAccount.accountStatuses.statusId = 3;
+  //   this.originalAccount.accountStatuses.status = "Closed";
+  //
+  //   this.accountServ.updateAccount(this.originalAccount).subscribe(
+  //   res => {
+  //     //this.post = res;
+  //     }
+  //   );
+  // }
+
 }

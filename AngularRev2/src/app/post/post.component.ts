@@ -24,6 +24,7 @@ export class PostComponent implements OnInit {
 
   comment: string;
   originalPost: Post;
+  postmsg: string;
 
   constructor(private accountServ: AccountService, private postService: PostService) {
     this.isClicked = false;
@@ -89,11 +90,36 @@ export class PostComponent implements OnInit {
   }
 
   clickedDelete() {
+    this.originalPost.contentId.enabled = false;
 
+    this.postService.updatePost(this.originalPost).subscribe(
+      res => {
+        //this.post = res;
+      }
+    );
   }
 
   clickedEdit() {
-    
+    let modal = document.getElementById("updateModal");
+    modal.style.display = "block";
+
+  }
+
+  clickedUpdate(){
+    this.originalPost.postId = this.post.postId;
+    this.originalPost.authorId = this.post.authorId;
+    this.originalPost.contentId.message = this.postmsg;
+
+    this.postService.updatePost(this.originalPost).subscribe(
+      res => {
+        //this.post = res;
+      }
+    );
+  }
+
+  clickedCloseUpdate(){
+    let modal = document.getElementById("updateModal");
+    modal.style.display = "none";
   }
 
 //Admin Fucntionality
@@ -105,6 +131,15 @@ export class PostComponent implements OnInit {
       console.log("banning " + this.originalPost.authorId.username);
     }
     this.accountServ.updateAccount(this.originalPost.authorId).subscribe(
+      res => {
+        //this.post = res;
+      }
+    );
+  }
+
+  clickedUnflag(){
+    this.originalPost.flaggedForReview = false;
+    this.postService.updatePost(this.originalPost).subscribe(
       res => {
         //this.post = res;
       }
