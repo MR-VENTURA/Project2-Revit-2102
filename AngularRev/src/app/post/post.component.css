@@ -21,10 +21,6 @@
     flex-direction: row;
 }
 
-.detail-like {
-    margin-right: 1rem;
-}
-
 .detail-like small {
     margin-left: .2rem;
 }
@@ -35,6 +31,7 @@
     z-index: 2;
     background-color: white;
     cursor: pointer;
+    transition: all 250ms ease-in-out;
 }
 
 .input-comment {
@@ -66,6 +63,7 @@
     color: white;
     border: none;
     border-radius: 2px;
+    font-size: .8rem;
 }
 
 .detail-like {
@@ -158,4 +156,36 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.text-group {
+    display: flex;
+    flex-direction: row;
+}
+
+.text-group .dropdown {
+    margin-left: auto;
+}
+
+.ellipse {
+    font-size: 1rem;
+    font-weight: 1000;
+    text-decoration: none;
+    color: #697386;
+}
+
+.post-comment:hover {
+    background-color: #563d7c;
+    color: white;
+}
+
+.comment-hover {
+    cursor: pointer;
+    padding: .5rem 1rem;
+    transition: all 250ms ease-in-out;
+}
+
+.comment-hover:hover {
+    background-color: #1ab394;
+    color: white;
 }
