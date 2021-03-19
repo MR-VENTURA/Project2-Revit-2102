@@ -32,7 +32,6 @@
     margin-left: .2rem;
 }
 .post-comment {
-    margin-right: auto;
     z-index: 2;
     background-color: white;
     cursor: pointer;
@@ -153,4 +152,10 @@ button {
     background-color: white;
     padding: 1rem;
     border-radius: 4px;
+}
+
+.cover {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
