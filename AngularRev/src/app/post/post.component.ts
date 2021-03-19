@@ -55,7 +55,7 @@ export class PostComponent implements OnInit {
     //Copy the original post.
     this.originalPost = JSON.parse(JSON.stringify(this.post));
     this.calcDate();
-    
+
     this.getComments();
   }
 
@@ -153,6 +153,12 @@ export class PostComponent implements OnInit {
     this.postService.updatePost(this.originalPost).subscribe(
       res => {
         //this.post = res;
+        this.accountServ.getOnePost(this.originalPost.postId).subscribe(
+          res => {
+            this.post = res;
+          }
+        );
+        
       }
     );
   }
