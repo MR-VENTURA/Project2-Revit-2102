@@ -5,12 +5,11 @@
             <!-- Links -->
             <ul class="navbar-nav nav-menu">
                 <li class="nav-item">
-                    <a class="nav-link nav-active" href="#">Home</a>
+                    <a class="nav-link" [ngClass]="(page == '/home') ? 'nav-active' : ''" (click)="setPage('/home'); this.router.navigate(['/home']);">Home</a>
                 </li>
-
                 <ng-container *ngIf="account.accountRoles.role==='Admin'">
                 <li class="nav-item">
-                  <a class="dropdown-item nav-link nav-active" (click)="clickAdmin()">Admin</a>
+                  <a class="nav-link" (click)="clickAdmin(); setPage('/admin')" [ngClass]="(page == '/admin') ? 'nav-active' : ''">Admin</a>
                 </li>
                 </ng-container>
                 <!-- <li class="nav-item">
