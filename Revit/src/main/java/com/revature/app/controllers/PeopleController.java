@@ -22,20 +22,24 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.app.beans.People;
+import com.revature.app.beans.Posts;
 import com.revature.app.exceptions.NonUniqueUsernameException;
 import com.revature.app.exceptions.PersonNotFoundException;
 import com.revature.app.services.PeopleService;
+import com.revature.app.services.PostsService;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
 @RequestMapping(path="/user")
 public class PeopleController {
 	private final PeopleService peopleServ;
+	private final PostsService postServ;
 	private ObjectMapper om = new ObjectMapper();
 	
 	@Autowired
-	public PeopleController(PeopleService p) {
+	public PeopleController(PeopleService p, PostsService po) {
 		this.peopleServ = p;
+		this.postServ = po;
 	}
 	
 	@GetMapping
@@ -102,5 +106,25 @@ public class PeopleController {
 			}
 		}
 		return ResponseEntity.ok(bannedPeople);
+	}
+	
+	@PutMapping(path="/banned/{id}")
+	public ResponseEntity<People> banPerson(@PathVariable("id") Integer id){
+		try {
+			People person = peopleServ.findPeopleById(id);
+			person.getAccountStatuses().setStatus("Banned");
+			peopleServ.updatePeople(person);
+			Set<Posts> posts = postServ.getAllPosts();
+			for(Posts element : posts) {
+				if(element.getAuthorId().getPeopleId() == id) {
+					element.getContentId().setEnabled(false);
+				}
+			}
+			return ResponseEntity.ok(person);
+		} catch (PersonNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ResponseEntity.notFound().build();
 	}
 }
