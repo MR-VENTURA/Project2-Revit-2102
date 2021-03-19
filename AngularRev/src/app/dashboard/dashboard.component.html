@@ -28,6 +28,7 @@
             <button id="getBtn" type="button" class="btn-post" (click)="submitPost()">Post</button>
         </div>
     </div>
+    <div class="loading-pulse" *ngIf="isLoading"></div>
     <ng-container *ngFor="let p of posts">
         <app-post *ngIf="p.parentPostId == null" [userAccount]="account" [post]="p"></app-post>
     </ng-container>
