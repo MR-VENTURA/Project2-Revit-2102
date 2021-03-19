@@ -30,7 +30,24 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getSession();
 
+  }
+
+  getSession() {
+    this.accountServ.getSession().subscribe(
+      res => {
+        if(res) {
+          this.account = res;
+          if(this.account.peopleId != null) {
+              this.router.navigate(['home']);
+          }
+        }
+      },
+      error => {
+        this.router.navigate(['/']);
+      }
+    )
   }
 
   handleLogin() {
@@ -64,17 +81,5 @@ export class LoginComponent implements OnInit {
     let modal = document.getElementById("registerModal");
     modal.style.display = "none";
   }
-
-  //Delete Account
-  // closeAccount(){
-  //   this.originalAccount.accountStatuses.statusId = 3;
-  //   this.originalAccount.accountStatuses.status = "Closed";
-  //
-  //   this.accountServ.updateAccount(this.originalAccount).subscribe(
-  //   res => {
-  //     //this.post = res;
-  //     }
-  //   );
-  // }
 
 }

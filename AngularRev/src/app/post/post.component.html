@@ -27,15 +27,6 @@
                         <small>Delete</small>
                     </div>
                     </ng-container>
-
-                    <div class="post-comment detail-like" (click)="clickedLike()">
-                        <i class="fa fa-thumbs-up" [style.color]="isLiked ? 'blue': ''"></i>
-                        <small>Like</small>
-                    </div>
-                    <div class="post-comment detail-like" (click)="clickedDislike()">
-                        <i class="fa fa-thumbs-down" [style.color]="isDisliked ? 'red': ''"></i>
-                        <small>Dislike</small>
-                    </div>
                     <div class="post-comment detail-like" (click)="clickedFlag()">
                         <i class="fa fa-flag" aria-hidden="true" [style.color]="isFlagged ? 'red': ''"></i>
                         <small>Report</small>
@@ -61,6 +52,14 @@
                     <i class="fa fa-comment"></i>
                     <small>comment</small>
                 </div>
+            </div>
+            <div class="comment-action comment-a" (click)="clickedLike()">
+                <i class="fa fa-thumbs-up" [style.color]="isLiked ? 'blue': ''"></i>
+                <small>Like</small>
+            </div>
+            <div class="comment-action" (click)="clickedDislike()">
+                <i class="fa fa-thumbs-down" [style.color]="isDisliked ? 'red': ''"></i>
+                <small>Dislike</small>
             </div>
         </div>
         <div class="input-comment" [ngClass]="isClicked ? 'expand2': ''" [style.visibility]="isClicked ? 'visible': 'hidden'">
