@@ -186,8 +186,7 @@ export class PostComponent implements OnInit {
   }
 
   addComment() {
-    console.log('cliked add comments main func', this.userAccount, this.comment);
-    this.accountServ.submitPost(this.userAccount, this.comment).subscribe(
+    this.accountServ.submitPost(this.userAccount, this.comment, "").subscribe(
       res => {
         this.accountServ.getOnePost(res.postId).subscribe(
           resp => {

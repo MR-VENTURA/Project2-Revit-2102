@@ -51,6 +51,7 @@
             </div>
         </div>
         <p class="date">{{ postDate }}</p>
+        <img *ngIf="post.contentId.image != ''" [src]="post.contentId.image" class="post-image"/>
         <p class="content">{{ post.contentId.message }}</p>
         <div class="cover">
             <div class="btn-post">

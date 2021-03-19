@@ -19,4 +19,6 @@ public interface PostsService {
 	public Set<Posts> getAllPosts();
 	
 	public Set<Posts> findAllByLatestDesc();
+	
+	public Set<Posts> findAllByParentPostIdDesc(Integer id);
 }

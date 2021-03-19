@@ -197,3 +197,7 @@ button {
     background-color: #1ab394;
     color: white;
 }
+
+.post-image {
+    width: 65%;
+}
