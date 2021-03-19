@@ -67,4 +67,9 @@ public class PostsServiceImpl implements PostsService {
 	public Set<Posts> findAllByLatestDesc() {
 		return postsDao.findAllByLatestDesc();
 	}
+	
+	@Override
+	public Set<Posts> findAllByParentPostIdDesc(Integer id) {
+		return postsDao.findAllByParentPostId(id);
+	}
 }

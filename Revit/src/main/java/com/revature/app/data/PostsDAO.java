@@ -15,7 +15,8 @@ import com.revature.app.exceptions.PostNotFoundException;
 public interface PostsDAO extends JpaRepository<Posts, Integer>{
 	public Posts findByPostId(Integer id) throws PostNotFoundException;
 	public People getPeopleByPostId(Integer id) throws PersonNotFoundException;
-	@Query(value = "select * from posts order by last_activity_date desc", nativeQuery = true)
+	@Query(value = "select * from posts where parent_post_id is null order by last_activity_date desc", nativeQuery = true)
 	public Set<Posts> findAllByLatestDesc();
-	
+	@Query(value = "select * from posts where parent_post_id = ? order by last_activity_date desc", nativeQuery = true)
+	public Set<Posts> findAllByParentPostId(Integer id);
 }

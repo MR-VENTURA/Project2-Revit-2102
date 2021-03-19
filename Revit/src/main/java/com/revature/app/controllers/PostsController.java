@@ -60,16 +60,13 @@ public class PostsController {
 	
 	@GetMapping(path="/comments/{id}")
     public ResponseEntity<Set<Posts>> getComments(@PathVariable("id") Integer id){
-        Set<Posts> posts = postServ.findAllByLatestDesc();
-        Set<Posts> comments = new HashSet<>();
-        for(Posts element : posts) {
-        	if(element.getParentPostId() != null) {
-        		if(element.getParentPostId().getPostId() == id) {
-	                comments.add(element);
-	            }
-        	}
-        }
-        return ResponseEntity.ok(comments);
+		Set<Posts> posts = new HashSet<Posts>();
+		try {
+			posts = postServ.findAllByParentPostIdDesc(id);
+		}catch(Exception e) {
+			System.out.println("no posts");
+		}
+		return ResponseEntity.ok(posts);
     }
 	
 	@PutMapping(path="/{id}")

@@ -80,7 +80,7 @@ export class AccountService {
     );
   }
 
-  submitPost(account: Account, msg: string): Observable<Post> {
+  submitPost(account: Account, msg: string, image: string): Observable<Post> {
     let post = new Post();
     post.postId = null;
     post.authorId = account;
@@ -91,7 +91,7 @@ export class AccountService {
     post.lastActivityDate = null;
     let newContent = new Content();
     newContent.message = msg;
-    newContent.image = "";
+    newContent.image = image;
     post.contentId = newContent;
 
     return this.http.post(`${this.urlServ.getUrl()}posts`, post, {withCredentials: true}).pipe(

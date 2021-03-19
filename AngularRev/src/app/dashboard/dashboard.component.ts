@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
 
   postmsg: string;
   posts: Post;
+  files: any[];
+  image: any;
 
   isSuccessful: boolean;
 
@@ -23,6 +25,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getSession();
     this.isSuccessful = false;
+    this.files = [];
   }
 
   getSession() {
@@ -53,7 +56,7 @@ export class DashboardComponent implements OnInit {
   }
 
   submitPost() {
-    this.accountServ.submitPost(this.account, this.postmsg).subscribe(
+    this.accountServ.submitPost(this.account, this.postmsg, this.image).subscribe(
       res => {
         if(res) {
           this.getPosts();
@@ -71,5 +74,22 @@ export class DashboardComponent implements OnInit {
       this.isSuccessful = false;
       document.body.style.overflowY = 'auto';
     }, 1600);
+  }
+
+  onFileChanged(event: any) {
+    this.files = event.target.files;
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+
+      //base 64 conversion.
+      reader.onload = (event) => {
+        this.image = event.target.result;
+      }
+    }
+  }
+
+  resetFiles() {
+    this.files = [];
   }
 }
