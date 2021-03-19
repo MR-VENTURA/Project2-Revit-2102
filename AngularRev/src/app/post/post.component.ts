@@ -14,22 +14,39 @@ import { Content } from '../models/content';
 })
 export class PostComponent implements OnInit {
   @Input() userAccount: Account;
+  //Manipulated post
   @Input() post: Post;
+  postComments: Post[];
+  postDate: string;
+  
+
+  //Check if comment button is clicked.
   isClicked: boolean;
 
+  //Post interactions
   isLiked: boolean;
   isDisliked: boolean;
   isFlagged: boolean;
   isBanned: boolean;
 
   comment: string;
+
+  //Copy of the original post directly from database.
   originalPost: Post;
   postmsg: string;
+
+  isLoading: boolean;
+  isSuccessful: boolean;
+
+
 
   constructor(private accountServ: AccountService, private postService: PostService) {
     this.isClicked = false;
     this.isLiked = false;
     this.isDisliked = false;
+    this.postDate = '';
+    this.isLoading = false;
+    this.isSuccessful = false;
     this.isFlagged = false;
     this.isBanned = false;
   }
@@ -37,10 +54,32 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     //Copy the original post.
     this.originalPost = JSON.parse(JSON.stringify(this.post));
+    this.calcDate();
+
+    
+    this.getComments();
+  }
+
+  calcDate() {
+    //Alter date into better format.
     let utc: any = this.post.contentId.postDate;
     let d = new Date(0);
     d.setUTCSeconds(utc);
-    this.post.contentId.postDate = d;
+    this.postDate = d.getMonth()+1 + '/' + d.getDate() + '/' + d.getFullYear();
+  }
+
+  getComments() {
+    this.isLoading = true;
+    this.postService.getComments(this.originalPost.postId).subscribe(
+      res => {
+        this.postComments = res;
+        this.isLoading = false;
+      },
+      err => {
+        console.log("no comments");
+        this.isLoading = false;
+      }
+    );
   }
 
   clickedLike() {
@@ -147,6 +186,7 @@ export class PostComponent implements OnInit {
   }
 
   addComment() {
+    console.log('cliked add comments main func', this.userAccount, this.comment);
     this.accountServ.submitPost(this.userAccount, this.comment).subscribe(
       res => {
         this.accountServ.getOnePost(res.postId).subscribe(
@@ -154,7 +194,12 @@ export class PostComponent implements OnInit {
             resp.parentPostId = this.originalPost;
             this.postService.updatePost(resp).subscribe(
               response => {
-                //console.log('updated post', response);
+                //set comment back to blank.
+                this.comment = "";
+                this.isClicked = false;
+                this.getComments();
+                this.calcDate();
+                this.onSuccess();
               }
             )
           }
@@ -163,16 +208,11 @@ export class PostComponent implements OnInit {
     )
   }
 
-  test() {
-    // @ts-ignore: Allow parent post id to be an integer.
-    this.originalPost.parentPostId = this.originalPost.parentPostId;
-    this.postService.updatePost(this.originalPost).subscribe(
-      res => {
-        //this.post = res;
-        console.log('updated post', this.post);
-      }
-    );
+  onSuccess() {
+    this.isSuccessful = true;
+    setTimeout(() => {
+      this.isSuccessful = false;
+      document.body.style.overflowY = 'auto';
+    }, 1600);
   }
-
-
 }

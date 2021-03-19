@@ -16,10 +16,13 @@ export class DashboardComponent implements OnInit {
   postmsg: string;
   posts: Post;
 
+  isSuccessful: boolean;
+
   constructor(private router: Router, private accountServ: AccountService) {}
 
   ngOnInit(): void {
     this.getSession();
+    this.isSuccessful = false;
   }
 
   getSession() {
@@ -54,8 +57,19 @@ export class DashboardComponent implements OnInit {
       res => {
         if(res) {
           this.getPosts();
+          this.onSuccess();
+          //reset post form.
+          this.postmsg = "";
         }
       }
     )
+  }
+
+  onSuccess() {
+    this.isSuccessful = true;
+    setTimeout(() => {
+      this.isSuccessful = false;
+      document.body.style.overflowY = 'auto';
+    }, 1600);
   }
 }

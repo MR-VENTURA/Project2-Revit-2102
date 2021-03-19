@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MainComponent } from './main/main.component';
 import { PostComponent } from './post/post.component';
+import { SuccessComponent } from './success/success.component';
 import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AdminComponent } from './admin/admin.component';
     NavbarComponent,
     MainComponent,
     PostComponent,
+    SuccessComponent,
     AdminComponent
   ],
   imports: [

@@ -1,6 +1,5 @@
 package com.revature.app.controllers;
 
-import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -59,6 +58,20 @@ public class PostsController {
 		return ResponseEntity.badRequest().build();
 	}
 	
+	@GetMapping(path="/comments/{id}")
+    public ResponseEntity<Set<Posts>> getComments(@PathVariable("id") Integer id){
+        Set<Posts> posts = postServ.findAllByLatestDesc();
+        Set<Posts> comments = new HashSet<>();
+        for(Posts element : posts) {
+        	if(element.getParentPostId() != null) {
+        		if(element.getParentPostId().getPostId() == id) {
+	                comments.add(element);
+	            }
+        	}
+        }
+        return ResponseEntity.ok(comments);
+    }
+	
 	@PutMapping(path="/{id}")
 	public ResponseEntity<Void> updatePost(@PathVariable("id") Integer id, @RequestBody Posts p) {
 		try {
@@ -96,17 +109,5 @@ public class PostsController {
 			return ResponseEntity.ok(p);
 		}
 		return ResponseEntity.badRequest().build();
-	}
-	
-	@GetMapping(path="/comments/{id}")
-	public ResponseEntity<Set<Posts>> getComments(@PathVariable("id") Integer id){
-		Set<Posts> posts = postServ.findAllByLatestDesc();
-		Set<Posts> comments = new HashSet<>();
-		for(Posts element : posts) {
-			if(element.getParentPostId().getPostId() == id) {
-				comments.add(element);
-			}
-		}
-		return ResponseEntity.ok(comments);
 	}
 }
