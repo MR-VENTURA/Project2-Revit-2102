@@ -50,19 +50,19 @@ export class AccountService {
     newRole.roleId = 1;
     newRole.role = "Author";
 
-    return this.http.post('http://localhost:8081/revit/user', account, {withCredentials: true}).pipe(
+    return this.http.post(`${this.urlServ.getUrl()}user`, account, {withCredentials: true}).pipe(
       map(res => res as Account)
     );
   }
 
   updateAccount(newAccount: Account): Observable<Account> {
-    return this.http.put(`http://localhost:8081/revit/user/${newAccount.peopleId}`, newAccount, {withCredentials: true}).pipe(
+    return this.http.put(`${this.urlServ.getUrl()}user/${newAccount.peopleId}`, newAccount, {withCredentials: true}).pipe(
       map(res => res as Account)
     );
   }
 
   getBanned(): Observable<Account> {
-    return this.http.get('http://localhost:8081/revit/user/banned', {withCredentials: true}).pipe(
+    return this.http.get(`${this.urlServ.getUrl()}user/banned`, {withCredentials: true}).pipe(
       map(res => res as Account)
     );
   }
