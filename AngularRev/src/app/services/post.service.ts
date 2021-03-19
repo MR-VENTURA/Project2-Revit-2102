@@ -24,7 +24,6 @@ export class PostService {
     let post = new Post();
     post.postId = null;
     post.authorId = account;
-    //@ts-ignore: for mapping to db
     post.parentPostId = null;
     post.flaggedForReview = false;
     post.likes = 0;

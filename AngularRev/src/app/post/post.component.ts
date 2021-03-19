@@ -55,11 +55,7 @@ export class PostComponent implements OnInit {
     //Copy the original post.
     this.originalPost = JSON.parse(JSON.stringify(this.post));
     this.calcDate();
-
-<<<<<<< HEAD
-
-=======
->>>>>>> b3d453f650870d67133afe7dee98c0df78afa271
+    
     this.getComments();
   }
 

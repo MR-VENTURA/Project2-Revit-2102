@@ -111,7 +111,13 @@ button {
 .cover {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+}
+.comment-action {
+    margin: auto 0;
+}
+.comment-a {
+    margin-left: auto;
+    margin-right: 1rem;
 }
 
 .text-group {

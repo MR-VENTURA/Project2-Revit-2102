@@ -10,15 +10,15 @@
             <div id="regBtn" class="register" (click)="clickedRegister()">Register</div>
 
             <div id="registerModal" class="modal">
-            <div class="modal-content">
-                <span class="close" (click)="clickedClose()">&times;</span>
-                <h4>Register a New Account</h4>
-                <p>Username</p>
-                <input id="username" type="text" [(ngModel)]="newUser" placeholder="Username"/>
-                <p>Password</p>
-                <input  id="userpass" type="password" [(ngModel)]="newPass" placeholder="Password"/>
-                <button id="getBtn" type="button" class="btn-update" (click)="clickedConfirm()">Register</button>
-            </div>
+                <div class="modal-content">
+                    <span class="close" (click)="clickedClose()">&times;</span>
+                    <h4>Register a New Account</h4>
+                    <p>Username</p>
+                    <input id="username" type="text" [(ngModel)]="newUser" placeholder="Username"/>
+                    <p>Password</p>
+                    <input  id="userpass" type="password" [(ngModel)]="newPass" placeholder="Password"/>
+                    <button id="getBtn" type="button" class="btn-update" (click)="clickedConfirm()">Register</button>
+                </div>
             </div>
 
         </div>
