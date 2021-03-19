@@ -109,3 +109,8 @@ button:hover {
 .uploaded-image {
     border: 2px dashed #91b0b3;
 }
+
+.loading-pulse {
+    margin: 3rem auto;
+    transform: scale(3);
+}

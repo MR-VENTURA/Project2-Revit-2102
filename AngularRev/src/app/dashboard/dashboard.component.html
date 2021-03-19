@@ -30,6 +30,6 @@
     </div>
     <div class="loading-pulse" *ngIf="isLoading"></div>
     <ng-container *ngFor="let p of posts">
-        <app-post *ngIf="p.parentPostId == null" [userAccount]="account" [post]="p"></app-post>
+        <app-post *ngIf="p.parentPostId == null && p.contentId.enabled" [userAccount]="account" [post]="p"></app-post>
     </ng-container>
 </div>
