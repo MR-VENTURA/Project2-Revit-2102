@@ -1,7 +1,7 @@
 <ng-container>
     <app-success *ngIf="isSuccessful" [show]="isSuccessful"></app-success>
     <div class="post-section">
-        <div class="text-group">
+        <div class="text-group" *ngIf="userAccount.accountStatuses.status==='Active'">
             <p class="name">{{post.authorId.username }}</p>
             <div class="dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <a class="ellipse">...</a>
@@ -27,15 +27,7 @@
                         <small>Delete</small>
                     </div>
                     </ng-container>
-        
-                    <div id="updateModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close" (click)="clickedCloseUpdate()">&times;</span>
-                            <textarea rows="5" id="post" name="post" class="post-big" [(ngModel)]="postmsg" placeholder="Update Post"></textarea>
-                            <button id="getBtn" type="button" class="btn-update" (click)="clickedUpdate()">Update</button>
-                        </div>
-                    </div>
-        
+
                     <div class="post-comment detail-like" (click)="clickedLike()">
                         <i class="fa fa-thumbs-up" [style.color]="isLiked ? 'blue': ''"></i>
                         <small>Like</small>
@@ -49,10 +41,20 @@
                         <small>Report</small>
                     </div>
             </div>
+
+            <div id="updateModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" (click)="clickedCloseUpdate()">&times;</span>
+                    <textarea rows="5" id="post" name="post" class="post-big" [(ngModel)]="postmsg" placeholder="Update Post"></textarea>
+                    <button id="getBtn" type="button" class="btn-update" (click)="clickedUpdate()">Update</button>
+                </div>
+            </div>
+            
         </div>
         <p class="date">{{ postDate }}</p>
         <img *ngIf="post.contentId.image != ''" [src]="post.contentId.image" class="post-image"/>
         <p class="content">{{ post.contentId.message }}</p>
+      <ng-container *ngIf="userAccount.accountStatuses.status==='Active'">
         <div class="cover">
             <div class="btn-post">
                 <div class="comment-hover" (click)="isClicked = !isClicked">
@@ -65,6 +67,7 @@
             <input type="text" [ngClass]="isClicked ? 'expand': ''" placeholder="Write a comment..." [(ngModel)]="comment"/>
             <button class="btn-comment" (click)="addComment()">Comment</button>
         </div>
+      </ng-container>
         <div class="loading-pulse" *ngIf="isLoading"></div>
         <ng-container *ngFor="let c of postComments">
             <app-post [userAccount]="userAccount" [post]="c"></app-post>

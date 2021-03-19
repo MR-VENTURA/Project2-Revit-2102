@@ -12,16 +12,14 @@ import { AccountService } from '../services/account.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-    @Input() account: Account;
-
-    originalAccount: Account;
+    account: Account;
 
   constructor(private router: Router, private accountServ: AccountService) { }
 
 
   ngOnInit(): void {
+    this.getSession();
     this.getBanned();
-    let originalAccount = this.account;
   }
 
   getBanned() {
@@ -34,16 +32,31 @@ export class AdminComponent implements OnInit {
     )
   }
 
-  clickedUnban(){
-      this.originalAccount.accountStatuses.statusId = 1;
-      this.originalAccount.accountStatuses.status = "Active";
-      console.log("Unban " + this.originalAccount.username);
+  clickedUnban(account){
 
-    this.accountServ.updateAccount(this.originalAccount).subscribe(
+      account.accountStatuses.statusId = 1;
+      account.accountStatuses.status = "Active";
+      console.log("Unban " + account.username);
+
+    this.accountServ.updateAccount(account).subscribe(
       res => {
         //this.post = res;
       }
     );
+  }
+
+  getSession() {
+    this.accountServ.getSession().subscribe(
+      res => {
+        if(res) {
+          console.log(res, "response");
+          this.account = res;
+          }
+      },
+      error => {
+        this.router.navigate(['/']);
+      }
+    )
   }
 
 }

@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   image: any;
 
   isSuccessful: boolean;
+  isLoading: boolean;
 
   constructor(private router: Router, private accountServ: AccountService) {}
 
@@ -26,6 +27,7 @@ export class DashboardComponent implements OnInit {
     this.getSession();
     this.isSuccessful = false;
     this.files = [];
+    this.isLoading = true;
   }
 
   getSession() {
@@ -50,6 +52,7 @@ export class DashboardComponent implements OnInit {
       res => {
         if(res) {
           this.posts = res;
+          this.isLoading = false;
         }
       }
     )
@@ -91,5 +94,6 @@ export class DashboardComponent implements OnInit {
 
   resetFiles() {
     this.files = [];
+    this.image = '';
   }
 }

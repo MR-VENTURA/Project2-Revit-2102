@@ -13,6 +13,7 @@ import { MainComponent } from './main/main.component';
 import { PostComponent } from './post/post.component';
 import { SuccessComponent } from './success/success.component';
 import { AdminComponent } from './admin/admin.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AdminComponent } from './admin/admin.component';
     MainComponent,
     PostComponent,
     SuccessComponent,
-    AdminComponent
+    AdminComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

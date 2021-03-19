@@ -10,7 +10,7 @@
 
                 <ng-container *ngIf="account.accountRoles.role==='Admin'">
                 <li class="nav-item">
-                  <a class="dropdown-item" (click)="clickAdmin()">Admin</a>
+                  <a class="dropdown-item nav-link nav-active" (click)="clickAdmin()">Admin</a>
                 </li>
                 </ng-container>
                 <!-- <li class="nav-item">
@@ -23,7 +23,7 @@
                         {{ account.username }}
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" (click)="clickProfile()">Profile</a>
                         <a class="dropdown-item" (click)="handleLogout()">Logout</a>
                     </div>
                 </li>

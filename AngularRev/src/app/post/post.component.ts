@@ -18,7 +18,7 @@ export class PostComponent implements OnInit {
   @Input() post: Post;
   postComments: Post[];
   postDate: string;
-  
+
 
   //Check if comment button is clicked.
   isClicked: boolean;
@@ -56,7 +56,7 @@ export class PostComponent implements OnInit {
     this.originalPost = JSON.parse(JSON.stringify(this.post));
     this.calcDate();
 
-    
+
     this.getComments();
   }
 
@@ -145,9 +145,11 @@ export class PostComponent implements OnInit {
   }
 
   clickedUpdate(){
+    let modal = document.getElementById("updateModal");
     this.originalPost.postId = this.post.postId;
     this.originalPost.authorId = this.post.authorId;
     this.originalPost.contentId.message = this.postmsg;
+    modal.style.display = "none";
 
     this.postService.updatePost(this.originalPost).subscribe(
       res => {

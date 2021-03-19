@@ -1,5 +1,6 @@
 <div class="container">
     <app-success *ngIf="isSuccessful" [show]="isSuccessful"></app-success>
+<ng-container *ngIf="account.accountStatuses.status==='Active'">
     <div class="row">
         <div class="post-submittion">
             <textarea rows="5" id="post" name="post" class="post-big" [(ngModel)]="postmsg" placeholder="What would you like to share?"></textarea>
@@ -28,6 +29,8 @@
             <button id="getBtn" type="button" class="btn-post" (click)="submitPost()">Post</button>
         </div>
     </div>
+  </ng-container>
+    <div class="loading-pulse" *ngIf="isLoading"></div>
     <ng-container *ngFor="let p of posts">
         <app-post *ngIf="p.parentPostId == null" [userAccount]="account" [post]="p"></app-post>
     </ng-container>
