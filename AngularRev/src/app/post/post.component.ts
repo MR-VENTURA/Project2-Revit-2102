@@ -56,7 +56,6 @@ export class PostComponent implements OnInit {
     this.originalPost = JSON.parse(JSON.stringify(this.post));
     this.calcDate();
 
-    
     this.getComments();
   }
 
