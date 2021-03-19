@@ -25,6 +25,7 @@ import com.revature.app.beans.People;
 import com.revature.app.beans.Posts;
 import com.revature.app.exceptions.NonUniqueUsernameException;
 import com.revature.app.exceptions.PersonNotFoundException;
+import com.revature.app.exceptions.PostNotFoundException;
 import com.revature.app.services.PeopleService;
 import com.revature.app.services.PostsService;
 
@@ -109,7 +110,7 @@ public class PeopleController {
 	}
 	
 	@PutMapping(path="/banned/{id}")
-	public ResponseEntity<People> banPerson(@PathVariable("id") Integer id){
+	public ResponseEntity<People> banPerson(@PathVariable("id") Integer id) throws PostNotFoundException{
 		try {
 			People person = peopleServ.findPeopleById(id);
 			person.getAccountStatuses().setStatus("Banned");
@@ -118,6 +119,7 @@ public class PeopleController {
 			for(Posts element : posts) {
 				if(element.getAuthorId().getPeopleId() == id) {
 					element.getContentId().setEnabled(false);
+					postServ.updatePosts(element);
 				}
 			}
 			return ResponseEntity.ok(person);
