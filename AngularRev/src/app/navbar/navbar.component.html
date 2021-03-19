@@ -7,6 +7,12 @@
                 <li class="nav-item">
                     <a class="nav-link nav-active" href="#">Home</a>
                 </li>
+
+                <ng-container *ngIf="account.accountRoles.role==='Admin'">
+                <li class="nav-item">
+                  <a class="dropdown-item" (click)="clickAdmin()">Admin</a>
+                </li>
+                </ng-container>
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Link 2</a>
                 </li> -->

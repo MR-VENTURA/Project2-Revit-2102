@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MainComponent } from './main/main.component';
 import { PostComponent } from './post/post.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PostComponent } from './post/post.component';
     DashboardComponent,
     NavbarComponent,
     MainComponent,
-    PostComponent
+    PostComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

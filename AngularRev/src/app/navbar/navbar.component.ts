@@ -31,4 +31,8 @@ export class NavbarComponent implements OnInit {
     )
   }
 
+  clickAdmin() {
+      this.router.navigate(['admin']);
+  }
+
 }

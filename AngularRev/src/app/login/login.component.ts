@@ -12,9 +12,11 @@ import { AccountService } from '../services/account.service';
 })
 export class LoginComponent implements OnInit {
   @Input() account: Account;
-  
+
   username: string;
   password: string;
+  newUser: string;
+  newPass: string;
 
   constructor(private router: Router, private accountServ: AccountService) {
     this.username = '';
@@ -41,4 +43,38 @@ export class LoginComponent implements OnInit {
       }
     )
   }
+
+  //Register
+  clickedRegister() {
+    let modal = document.getElementById("registerModal");
+    modal.style.display = "block";
+
+  }
+
+  clickedConfirm() {
+    let modal = document.getElementById("registerModal");
+    this.accountServ.registerAccount(this.newUser, this.newPass).subscribe(
+      res => {
+        modal.style.display ="none";
+        }
+    )
+  }
+
+  clickedClose(){
+    let modal = document.getElementById("registerModal");
+    modal.style.display = "none";
+  }
+
+  //Delete Account
+  // closeAccount(){
+  //   this.originalAccount.accountStatuses.statusId = 3;
+  //   this.originalAccount.accountStatuses.status = "Closed";
+  //
+  //   this.accountServ.updateAccount(this.originalAccount).subscribe(
+  //   res => {
+  //     //this.post = res;
+  //     }
+  //   );
+  // }
+
 }
