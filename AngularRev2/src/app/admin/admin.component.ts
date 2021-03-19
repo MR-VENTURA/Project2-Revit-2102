@@ -21,7 +21,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBanned();
-    let originalAccount = JSON.parse(JSON.stringify(this.account));
+    let originalAccount = this.account;
   }
 
   getBanned() {

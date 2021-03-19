@@ -23,7 +23,7 @@
                         {{ account.username }}
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" (click)="clickProfile()">Profile</a>
                         <a class="dropdown-item" (click)="handleLogout()">Logout</a>
                     </div>
                 </li>

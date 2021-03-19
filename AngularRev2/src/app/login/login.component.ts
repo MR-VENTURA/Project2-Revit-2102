@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
+  newUser: string;
+  newPass: string;
 
   constructor(private router: Router, private accountServ: AccountService) {
     this.username = '';
@@ -50,9 +52,10 @@ export class LoginComponent implements OnInit {
   }
 
   clickedConfirm() {
-    this.accountServ.registerAccount(this.username, this.password).subscribe(
+    let modal = document.getElementById("registerModal");
+    this.accountServ.registerAccount(this.newUser, this.newPass).subscribe(
       res => {
-
+        modal.style.display ="none";
         }
     )
   }
@@ -61,17 +64,5 @@ export class LoginComponent implements OnInit {
     let modal = document.getElementById("registerModal");
     modal.style.display = "none";
   }
-
-  //Delete Account
-  // closeAccount(){
-  //   this.originalAccount.accountStatuses.statusId = 3;
-  //   this.originalAccount.accountStatuses.status = "Closed";
-  //
-  //   this.accountServ.updateAccount(this.originalAccount).subscribe(
-  //   res => {
-  //     //this.post = res;
-  //     }
-  //   );
-  // }
 
 }

@@ -7,30 +7,31 @@ import {AccountRole} from '../models/account-role';
 import {AccountStatus} from '../models/account-status';
 import { Post } from '../models/post';
 import { Content } from '../models/content';
+import { UrlService } from './url.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private urlServ: UrlService) { }
 
   handleLogin(username: string, password: string): Observable<Account> {
     const data = {
       username,
       password
     }
-    return this.http.post('http://localhost:8081/revit/user/login', data, {withCredentials: true}).pipe(
+    return this.http.post(`${this.urlServ.getUrl()}user/login`, data, {withCredentials: true}).pipe(
       map(res => res as Account)
     );
   }
 
   handleLogout(): Observable<any> {
-    return this.http.delete('http://localhost:8081/revit/user/', {withCredentials:true}).pipe();
+    return this.http.delete(`${this.urlServ.getUrl()}user/`, {withCredentials:true}).pipe();
   }
 
   getSession(): Observable<Account> {
-    return this.http.get('http://localhost:8081/revit/user', {withCredentials: true}).pipe(
+    return this.http.get(`${this.urlServ.getUrl()}user`, {withCredentials: true}).pipe(
       map(res => res as Account)
     );
   }
@@ -68,13 +69,13 @@ export class AccountService {
 
   //posts
   getPosts(): Observable<Post> {
-    return this.http.get('http://localhost:8081/revit/posts', {withCredentials: true}).pipe(
+    return this.http.get(`${this.urlServ.getUrl()}posts`, {withCredentials: true}).pipe(
       map(res => res as Post)
     );
   }
 
   getOnePost(id: number): Observable<Post> {
-    return this.http.get(`http://localhost:8081/revit/posts/${id}`, {withCredentials: true}).pipe(
+    return this.http.get(`${this.urlServ.getUrl()}posts/${id}`, {withCredentials: true}).pipe(
       map(res => res as Post)
     );
   }
@@ -93,7 +94,7 @@ export class AccountService {
     newContent.image = "";
     post.contentId = newContent;
 
-    return this.http.post('http://localhost:8081/revit/posts', post, {withCredentials: true}).pipe(
+    return this.http.post(`${this.urlServ.getUrl()}posts`, post, {withCredentials: true}).pipe(
       map(res => res as Post)
     );
   }

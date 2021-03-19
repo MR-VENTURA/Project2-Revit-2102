@@ -5,16 +5,17 @@ import { Account } from '../models/account';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Content } from '../models/content';
+import { UrlService } from './url.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private urlServ: UrlService) { }
 
   updatePost(newPost: Post): Observable<Post> {
-    return this.http.put(`http://localhost:8081/revit/posts/${newPost.postId}`, newPost, {withCredentials: true}).pipe(
+    return this.http.put(`${this.urlServ.getUrl()}posts/${newPost.postId}`, newPost, {withCredentials: true}).pipe(
       map(res => res as Post)
     );
   }
@@ -34,8 +35,14 @@ export class PostService {
     newContent.image = "";
     post.contentId = newContent;
 
-    return this.http.post('http://localhost:8081/revit/posts', post, {withCredentials: true}).pipe(
+    return this.http.post(`${this.urlServ.getUrl()}posts`, post, {withCredentials: true}).pipe(
       map(res => res as Post)
+    );
+  }
+
+  getComments(id: number): Observable<Post[]> {
+    return this.http.get(`${this.urlServ.getUrl()}posts/comments/${id}`, {withCredentials: true}).pipe(
+      map(res => res as Post[])
     );
   }
 }
