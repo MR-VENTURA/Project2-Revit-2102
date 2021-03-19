@@ -70,7 +70,7 @@
       </ng-container>
         <div class="loading-pulse" *ngIf="isLoading"></div>
         <ng-container *ngFor="let c of postComments">
-            <app-post [userAccount]="userAccount" [post]="c"></app-post>
+            <app-post [userAccount]="userAccount" [post]="c" *ngIf="c.contentId.enabled"></app-post>
         </ng-container>
     </div>
 </ng-container>

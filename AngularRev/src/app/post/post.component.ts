@@ -56,7 +56,10 @@ export class PostComponent implements OnInit {
     this.originalPost = JSON.parse(JSON.stringify(this.post));
     this.calcDate();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b3d453f650870d67133afe7dee98c0df78afa271
     this.getComments();
   }
 
@@ -130,10 +133,10 @@ export class PostComponent implements OnInit {
 
   clickedDelete() {
     this.originalPost.contentId.enabled = false;
-
     this.postService.updatePost(this.originalPost).subscribe(
       res => {
-        //this.post = res;
+        this.post.contentId.enabled = false;
+        this.onSuccess();
       }
     );
   }
