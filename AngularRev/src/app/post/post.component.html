@@ -1,8 +1,11 @@
 <ng-container>
     <app-success *ngIf="isSuccessful" [show]="isSuccessful"></app-success>
-    <div class="post-section">
+    <div class="post-section" *ngIf="post.authorId.accountStatuses.status==='Active'">
         <div class="text-group" *ngIf="userAccount.accountStatuses.status==='Active'">
             <p class="name">{{post.authorId.username }}</p>
+            <div *ngIf="post.flaggedForReview===true && userAccount.accountRoles.role==='Admin'">
+              <p class="flag">Flagged<i class="fa fa-flag"></i></p>
+            </div>
             <div class="dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <a class="ellipse">...</a>
             </div>
@@ -12,7 +15,7 @@
                         <i class="fa fa-ban" [style.color]="isBanned ? 'red': ''"></i>
                         <small>Ban User</small>
                     </div>
-                    <div class="post-comment" (click)="clickedUnflag()">
+                    <div *ngIf="post.flaggedForReview===true" class="post-comment" (click)="clickedUnflag()">
                         <i class="fa fa-flag" [style.color]="isFlagged ? 'green': ''"></i>
                         <small>Unflag</small>
                     </div>
@@ -40,7 +43,7 @@
                     <button id="getBtn" type="button" class="btn-update" (click)="clickedUpdate()">Update</button>
                 </div>
             </div>
-            
+
         </div>
         <p class="date">{{ postDate }}</p>
         <img *ngIf="post.contentId.image != ''" [src]="post.contentId.image" class="post-image"/>

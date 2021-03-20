@@ -114,6 +114,7 @@ button {
 }
 .comment-action {
     margin: auto 0;
+    cursor: pointer;
 }
 .comment-a {
     margin-left: auto;
@@ -162,4 +163,11 @@ button {
 
 .post-image {
     width: 65%;
+}
+
+.flag {
+  color: red;
+  font-size: 2rem;
+  font-weight: 1000;
+  
 }
