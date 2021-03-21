@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
   newUser: string;
   newPass: string;
 
+  errorOnLogin: string;
+
   constructor(private router: Router, private accountServ: AccountService) {
     this.username = '';
     this.password = '';
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
     this.account.accountStatuses = new AccountStatus();
     this.account.username = '';
     this.account.userPass = '';
+    this.errorOnLogin = '';
   }
 
   ngOnInit(): void {
@@ -57,6 +60,13 @@ export class LoginComponent implements OnInit {
       res => {
         this.account = res;
         this.router.navigate(['home']);
+      },
+      err => {
+        if(err.status == 301) {
+          this.errorOnLogin = 'Incorrect password.';
+        } else if(err.status == 302) {
+          this.errorOnLogin = 'No account with username found.';
+        }
       }
     )
   }
