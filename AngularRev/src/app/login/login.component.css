@@ -69,3 +69,7 @@ button:hover {
   cursor: pointer;
   color: blue;
 }
+
+.error {
+    color: red;
+}

@@ -5,6 +5,7 @@
             <form>
                 <input id="usernameInput" type="text" [(ngModel)]="username" name="username" placeholder="Username"/> <!-- two-way binding -->
                 <input id="passwordInput" type="password" [(ngModel)]="password" name="password" placeholder="Password" />
+                <p class="error" *ngIf="errorOnLogin != ''">{{ errorOnLogin }}</p>
                 <button id="getBtn" type="button" (click)="handleLogin()">Login</button>
             </form>
             <div id="regBtn" class="register" (click)="clickedRegister()">Register</div>
