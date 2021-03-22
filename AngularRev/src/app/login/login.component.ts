@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
         } else if(err.status == 302) {
           this.errorOnLogin = 'No account with username found.';
         }
+        console.log(err);
       }
     )
   }

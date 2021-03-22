@@ -6,6 +6,7 @@ import { AccountStatus } from '../models/account-status';
 import { AccountService } from '../services/account.service';
 import { PostService } from '../services/post.service';
 import { Content } from '../models/content';
+import { Votes } from '../models/votes';
 
 @Component({
   selector: 'app-post',
@@ -83,6 +84,11 @@ export class PostComponent implements OnInit {
 
   clickedLike() {
     this.isLiked = !this.isLiked;
+    let newVote = new Votes();
+    // @ts-ignore: allow jpa to map
+    newVote.authorId = this.userAccount;
+    // @ts-ignore: allow jpa to map
+    newVote.postId = this.post;
     if(this.isLiked) {
       this.originalPost.likes += 1;
       //Check if disliked is true, if so, set it to false.
@@ -93,6 +99,7 @@ export class PostComponent implements OnInit {
     }
     this.postService.updatePost(this.originalPost).subscribe(
       res => {
+        
         //this.post = res;
       }
     );

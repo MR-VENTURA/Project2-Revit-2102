@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Content } from '../models/content';
 import { UrlService } from './url.service';
+import { Votes } from '../models/votes';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,13 @@ export class PostService {
   getComments(id: number): Observable<Post[]> {
     return this.http.get(`${this.urlServ.getUrl()}posts/comments/${id}`, {withCredentials: true}).pipe(
       map(res => res as Post[])
+    );
+  }
+
+  
+  updateVotes(vote: Votes): Observable<Votes> {
+    return this.http.put(`${this.urlServ.getUrl()}posts/votes/${vote.postId}`, vote.postId, {withCredentials: true}).pipe(
+      map(res => res as Votes)
     );
   }
 }

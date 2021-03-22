@@ -30,7 +30,7 @@ import com.revature.app.services.PeopleService;
 import com.revature.app.services.PostsService;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200", allowCredentials="true")
+@CrossOrigin(origins="*", allowCredentials="true")
 @RequestMapping(path="/user")
 public class PeopleController {
 	private final PeopleService peopleServ;
@@ -62,7 +62,12 @@ public class PeopleController {
 					session.setAttribute("username", people);
 					return ResponseEntity.ok(people);
 				}
-				return ResponseEntity.badRequest().build();
+				else {
+					return ResponseEntity.status(301).build();
+				}
+				//return ResponseEntity.badRequest().build();
+			} else {
+				return ResponseEntity.status(302).build();
 			}
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();

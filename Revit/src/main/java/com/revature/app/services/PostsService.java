@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.revature.app.beans.People;
 import com.revature.app.beans.Posts;
+import com.revature.app.beans.Votes;
 import com.revature.app.exceptions.PersonNotFoundException;
 import com.revature.app.exceptions.PostNotFoundException;
 
@@ -21,4 +22,8 @@ public interface PostsService {
 	public Set<Posts> findAllByLatestDesc();
 	
 	public Set<Posts> findAllByParentPostIdDesc(Integer id);
+	
+	public Integer addVote(Votes v);
+	public void updateVote(Votes v);
+	public boolean removeVote(Votes v);
 }

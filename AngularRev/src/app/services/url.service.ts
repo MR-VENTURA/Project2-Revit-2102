@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UrlService {
 
-  private url: string = 'http://localhost:8081/revit/';
+  private url: string = 'http://ec2-3-137-191-182.us-east-2.compute.amazonaws.com/revit/';
 
   constructor() { }
 

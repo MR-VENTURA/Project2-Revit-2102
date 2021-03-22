@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.revature.app.beans.People;
 import com.revature.app.beans.Posts;
+import com.revature.app.beans.Votes;
 import com.revature.app.data.ContentDAO;
 import com.revature.app.data.PeopleDAO;
 import com.revature.app.data.PostsDAO;
 import com.revature.app.data.StatusDAO;
+import com.revature.app.data.VotesDAO;
 import com.revature.app.exceptions.PersonNotFoundException;
 import com.revature.app.exceptions.PostNotFoundException;
 
@@ -23,13 +25,15 @@ public class PostsServiceImpl implements PostsService {
 	private PeopleDAO peopleDao;
 	private ContentDAO contentDao;
 	private StatusDAO statusDao;
+	private VotesDAO votesDao;
 	
 	@Autowired
-	public PostsServiceImpl(PostsDAO ps, PeopleDAO p, ContentDAO c, StatusDAO s) {
+	public PostsServiceImpl(PostsDAO ps, PeopleDAO p, ContentDAO c, StatusDAO s, VotesDAO v) {
 		postsDao = ps;
 		peopleDao = p;
 		contentDao = c;
 		statusDao = s;
+		votesDao = v;
 	}
 
 	
@@ -71,5 +75,23 @@ public class PostsServiceImpl implements PostsService {
 	@Override
 	public Set<Posts> findAllByParentPostIdDesc(Integer id) {
 		return postsDao.findAllByParentPostId(id);
+	}
+	
+	@Override
+	public Integer addVote(Votes v) {
+		return votesDao.save(v).getId();
+	}
+	@Override
+	public void updateVote(Votes v) {
+		if (votesDao.getOne(v.getId()) != null)
+			votesDao.save(v);
+	}
+	@Override
+	public boolean removeVote(Votes v) {
+		if (votesDao.getOne(v.getId()) != null) {
+			votesDao.delete(v);
+			return true;
+		}
+		return false;
 	}
 }

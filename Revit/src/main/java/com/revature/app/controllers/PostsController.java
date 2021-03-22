@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.app.beans.People;
 import com.revature.app.beans.Posts;
+import com.revature.app.beans.Votes;
 import com.revature.app.exceptions.PersonNotFoundException;
 import com.revature.app.exceptions.PostNotFoundException;
 import com.revature.app.services.PostsService;
@@ -107,4 +108,15 @@ public class PostsController {
 		}
 		return ResponseEntity.badRequest().build();
 	}
+	
+//	@PutMapping(path="/votes/{id}")
+//	public ResponseEntity<Votes> updateVotes(@PathVariable("id") Integer id) {
+//		 try {
+//			 Posts p = postServ.findByPostId(id);
+//			 
+//		 } catch(Exception e) {
+//			 System.out.println("no post found");
+//		 }
+//		
+//	}
 }
