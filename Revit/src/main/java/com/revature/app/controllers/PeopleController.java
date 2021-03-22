@@ -96,6 +96,10 @@ public class PeopleController {
 	public ResponseEntity<Void> updateUser(HttpSession session, @PathVariable("id") Integer id, 
 			@RequestBody People people) throws PersonNotFoundException {
 		People loggedPeople = (People) session.getAttribute("username");
+		if (loggedPeople.getAccountRoles().getRole().equals("Admin")) {
+			peopleServ.updatePeople(people);
+			return ResponseEntity.ok().build();
+		}
 		if (loggedPeople != null && loggedPeople.getPeopleId().equals(id)) {
 			peopleServ.updatePeople(people);
 			return ResponseEntity.ok().build();
