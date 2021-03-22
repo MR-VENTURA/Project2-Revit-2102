@@ -30,7 +30,7 @@ import com.revature.app.services.PeopleService;
 import com.revature.app.services.PostsService;
 
 @RestController
-@CrossOrigin(origins="http://projectrevit.s3-website-us-west-1.amazonaws.com", allowCredentials="true")
+@CrossOrigin(origins="*", allowCredentials="true")
 @RequestMapping(path="/user")
 public class PeopleController {
 	private final PeopleService peopleServ;
