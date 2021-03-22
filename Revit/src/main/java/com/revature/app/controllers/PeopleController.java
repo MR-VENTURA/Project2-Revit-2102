@@ -62,13 +62,19 @@ public class PeopleController {
 					session.setAttribute("username", people);
 					return ResponseEntity.ok(people);
 				}
-				return ResponseEntity.badRequest().build();
+				else {
+					return ResponseEntity.status(301).build();
+				}
+				//return ResponseEntity.badRequest().build();
+			} else {
+				return ResponseEntity.status(302).build();
 			}
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 		return ResponseEntity.notFound().build();
 	}
+
 	
 	@DeleteMapping
 	public ResponseEntity<Void> logOut(HttpSession session) {
